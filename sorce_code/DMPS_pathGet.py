@@ -41,7 +41,7 @@ def pathGet(entry):
         nirpath_aco     = glob.glob(data_file +"/**rhos_833.tif"   , recursive=True)[0]
         R_RE2path_aco   = glob.glob(data_file +"/**rhos_740.tif"   , recursive=True)[0]
         R_SWIR1path_aco = glob.glob(data_file +"/**rhos_1614.tif"  , recursive=True)[0]
-        type_sentinel = 1
+        type_sentinel = 1   #S2Aデータ
     elif len(acolite_check) > 4 and "S2B" in acolite_check[0]:    #ACOLITE S2Bデータ
         bluepath_aco    = glob.glob(data_file +"/**rhos_492.tif"   , recursive=True)[0]
         greenpath_aco   = glob.glob(data_file +"/**rhos_559.tif"   , recursive=True)[0]
@@ -49,7 +49,7 @@ def pathGet(entry):
         nirpath_aco     = glob.glob(data_file +"/**rhos_833.tif"   , recursive=True)[0]
         R_RE2path_aco   = glob.glob(data_file +"/**rhos_739.tif"   , recursive=True)[0]
         R_SWIR1path_aco = glob.glob(data_file +"/**rhos_1610.tif"  , recursive=True)[0]
-        type_sentinel = 2
+        type_sentinel = 2   #S2Bデータ
     else:
         bluepath_aco    = None #初期設定
         greenpath_aco   = None #初期設定
