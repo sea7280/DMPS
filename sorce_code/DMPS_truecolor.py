@@ -3,7 +3,7 @@ from osgeo import gdal
 import matplotlib.image as mpimg
 import os
 
-def truecolor(filepath,point_list,title):
+def truecolor(filepath,entry_detail):
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
@@ -14,11 +14,11 @@ def truecolor(filepath,point_list,title):
     band4_8bit_path=os.path.dirname(__file__) + "/tif_file/Band4_8bit.tif"
 
     #切り出しの詳細
-    minX          = point_list[0]
-    minY          = point_list[1]
-    deltaX        = point_list[2]
-    deltaY        = point_list[2]
-    max_luminance = point_list[3]
+    minX          = entry_detail[4]
+    minY          = entry_detail[5]
+    deltaX        = entry_detail[6]
+    deltaY        = entry_detail[6]
+    max_luminance = entry_detail[2]
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
     #gdal.Translate({出力画像名}, {入力画像名}, outputType={データ形式設定} , scaleParams=[[min,max]], srcWin=[minX,minY,deltaX,deltaY])
@@ -64,6 +64,6 @@ def truecolor(filepath,point_list,title):
 
     image1 = mpimg.imread(out_True_path)
     plt.imshow(image1)
-    plt.title(title)
+    plt.title(entry_detail[12])
 
     plt.show()

@@ -3,7 +3,7 @@ from osgeo import gdal
 from tkinter import messagebox
 import os
 
-def calc_ndvi(filepath,point_list):
+def calc_ndvi(filepath,entry_detail):
 #--------------------------------------------- path ---------------------------------------------------------
 
     redpath = filepath[2]
@@ -11,10 +11,10 @@ def calc_ndvi(filepath,point_list):
 
 #--------------------------------------------- range ---------------------------------------------------------
 
-    minX      = point_list[0]
-    minY      = point_list[1]
-    deltaX    = point_list[2]
-    deltaY    = point_list[2]
+    minX      = entry_detail[4]
+    minY      = entry_detail[5]
+    deltaX    = entry_detail[6]
+    deltaY    = entry_detail[6]
 
 #--------------------------------------------- tif ---------------------------------------------------------
 

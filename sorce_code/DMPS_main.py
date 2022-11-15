@@ -16,7 +16,7 @@ class Application(tk.Frame):
         label.create_label(self.master)
         self.entry_list = entry.create_entry(self.master)
         self.listbox = listbox.create_listbox(master)
-        button.create_button(self.master,self.entry_list)
+        button.create_button(self.master,self.entry_list, self.listbox)
         
 
 

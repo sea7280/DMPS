@@ -5,7 +5,7 @@ import DMPS_admin as admin
 import DMPS_loadDataFile as loadDataFile
 
 
-def create_button(master, entry):
+def create_button(master, entry, listbox):
         entry_list = entry
         
         Button = tk.Button(master,text=u'hist', width=5)
@@ -16,19 +16,19 @@ def create_button(master, entry):
         Button.place(x=420,y=95)
         Button = tk.Button(master,text=u'Load Setting', width=11)
         Button.place(x=470,y=70)
-        Button = tk.Button(master,text=u'RGB', width=11, command=lambda:admin.admin(entry_list, mode="rgb"))
+        Button = tk.Button(master,text=u'RGB', width=11, command=lambda:admin.admin(entry_list, listbox, mode="rgb"))
         Button.place(x=470,y=100)
-        Button = tk.Button(master,text=u'NDVI', width=11)
+        Button = tk.Button(master,text=u'NDVI', width=11, command=lambda:admin.admin(entry_list, listbox, mode="ndvi"))
         Button.place(x=470,y=130)
-        Button = tk.Button(master,text=u'FDI', width=11)
+        Button = tk.Button(master,text=u'FDI', width=11, command=lambda:admin.admin(entry_list, listbox, mode="fdi"))
         Button.place(x=470,y=160)
-        Button = tk.Button(master,text=u'NDVI&FDI', width=11)
+        Button = tk.Button(master,text=u'NDVI&FDI', width=11, command=lambda:admin.admin(entry_list, listbox, mode="ndvi&fdi"))
         Button.place(x=470,y=190)
-        Button = tk.Button(master,text=u'Save Excel', width=11)
+        Button = tk.Button(master,text=u'Save Excel', width=11, command=lambda:admin.admin(entry_list, listbox, mode="excel"))
         Button.place(x=470,y=220)
-        Button = tk.Button(master,text=u'Save Setting', width=11)
+        Button = tk.Button(master,text=u'Save Setting', width=11, command=lambda:admin.admin(entry_list, listbox, mode="saveSetting"))
         Button.place(x=470,y=250)
-        Button = tk.Button(master,text=u'Judge', width=11)
+        Button = tk.Button(master,text=u'Judge', width=11, command=lambda:admin.admin(entry_list, listbox, mode="judge"))
         Button.place(x=470,y=280)
         Button = tk.Button(master,text=u'Exit', width=11,command=lambda:exit.exit_window(master))
         Button.place(x=470,y=310)

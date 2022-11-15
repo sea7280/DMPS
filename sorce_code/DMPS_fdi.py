@@ -4,17 +4,17 @@ import numpy as np
 from osgeo import gdal
 
 
-def calc_fdi(filepath,point_list):
+def calc_fdi(filepath,entry_detail):
 
     nirpath     = filepath[9]
     R_RE2path   = filepath[10]
     R_SWIR1path = filepath[11]
     senti_num   = filepath[12]
         #切り抜き範囲
-    minX      = point_list[0]
-    minY      = point_list[1]
-    deltaX    = point_list[2]
-    deltaY    = point_list[2]
+    minX      = entry_detail[4]
+    minY      = entry_detail[5]
+    deltaX    = entry_detail[6]
+    deltaY    = entry_detail[6]
 
     #gdal.Openで画像を読み込みます
     cut_NIR_img  =gdal.Open(nirpath    )
