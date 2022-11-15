@@ -1,15 +1,22 @@
 import tkinter as tk
 
-def create_button(master):
+import DMPS_exit as exit
+import DMPS_admin as admin
+import DMPS_loadDataFile as loadDataFile
+
+
+def create_button(master, entry):
+        entry_list = entry
+        
         Button = tk.Button(master,text=u'hist', width=5)
         Button.place(x=285,y=145)
-        Button = tk.Button(master,text=u'...', height=1 ,width=2)
+        Button = tk.Button(master,text=u'...', height=1 ,width=2, command=lambda:loadDataFile.load_dataFile(entry_list[0]))
         Button.place(x=420,y=70)
-        Button = tk.Button(master,text=u'...',height=1 ,width=2)
+        Button = tk.Button(master,text=u'...',height=1 ,width=2, command=lambda:loadDataFile.load_dataFile(entry_list[1]))
         Button.place(x=420,y=95)
         Button = tk.Button(master,text=u'Load Setting', width=11)
         Button.place(x=470,y=70)
-        Button = tk.Button(master,text=u'RGB', width=11)
+        Button = tk.Button(master,text=u'RGB', width=11, command=lambda:admin.admin(entry_list, mode="rgb"))
         Button.place(x=470,y=100)
         Button = tk.Button(master,text=u'NDVI', width=11)
         Button.place(x=470,y=130)
@@ -23,7 +30,7 @@ def create_button(master):
         Button.place(x=470,y=250)
         Button = tk.Button(master,text=u'Judge', width=11)
         Button.place(x=470,y=280)
-        Button = tk.Button(master,text=u'Exit', width=11)
+        Button = tk.Button(master,text=u'Exit', width=11,command=lambda:exit.exit_window(master))
         Button.place(x=470,y=310)
         Button = tk.Button(master,text=u'del', width=5)
         Button.place(x=580,y=300)
