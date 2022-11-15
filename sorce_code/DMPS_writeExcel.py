@@ -4,7 +4,7 @@ import os
 from osgeo import gdal
 import numpy as np
 
-def saveExcel(filepath, point_list, fileName, ndviData, fdiData):
+def saveExcel(filepath, entry_detail, ndviData, fdiData):
     def write_excel(band,sheet):
         ws = sheet
         size_y = len(band)
@@ -13,10 +13,11 @@ def saveExcel(filepath, point_list, fileName, ndviData, fdiData):
             for j in range(size_x):
                 ws.cell(row=i + 1,column=j + 1).value = band[i][j]
 
-    minX      = point_list[0]
-    minY      = point_list[1]
-    deltaX    = point_list[2]
-    deltaY    = point_list[2]
+    minX      = entry_detail[4]
+    minY      = entry_detail[5]
+    deltaX    = entry_detail[6]
+    deltaY    = entry_detail[6]
+    string    = entry_detail[11]
 
     bluepath        = filepath[0]
     greenpath       = filepath[1]
@@ -140,6 +141,5 @@ def saveExcel(filepath, point_list, fileName, ndviData, fdiData):
     write_excel(ndvi                  ,wb["NDVI"])
     write_excel(FDI                   ,wb["FDI"])
 
-    string = fileName
     wb.save(os.getcwd() + f"/excel/excel_{string}.xlsx")
     messagebox.showinfo('Complete', 'Write to Excel completed')
