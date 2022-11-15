@@ -14,4 +14,18 @@ def image_create(data,min,max,title):
 
         plt.show()
 
+def image_create_double(dataA,dataB,minA,maxA,minB,maxB):
+
+        plt.figure(figsize=(10,6))
+        plt.subplot(1,2,1)
+        plt.imshow(dataA,vmin=minA,vmax=maxA,cmap='Oranges')
+        plt.title("NDVI")
+        plt.colorbar()
+
+        plt.subplot(1,2,2)
+        plt.imshow(dataB,vmin=minB,vmax=maxB,cmap='Oranges')
+        plt.title("FDI")
+        plt.colorbar()
+
+        plt.show()
 
