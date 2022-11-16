@@ -56,6 +56,6 @@ def admin(entry,listbox, mode):
         elif mode == 'judge':
             ndvi_result = ndvi.calc_ndvi(satellite_filepath, entry_data)
             fdi_result  = fdi.calc_fdi(satellite_filepath, entry_data)
-            judgeResult = knn.knn_judge(ndvi_result, fdi_result)
-            knnSave.knnSaveExcel(judgeResult, saveFileName)
-            knnRGB.knnRGB(judgeResult, satellite_filepath, entry_data, listbox)
+            knn.knn_judge(ndvi_result, fdi_result)
+            knnSave.knnSaveExcel(saveFileName)
+            knnRGB.knnRGB(satellite_filepath, entry_data, listbox)

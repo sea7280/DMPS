@@ -5,7 +5,7 @@ import datetime
 from sklearn.model_selection import train_test_split
 # k-近傍法（k-NN）
 from sklearn.neighbors import KNeighborsClassifier
-
+import pickle
 
 def knn_judge(ndvi, fdi):
 
@@ -38,6 +38,9 @@ def knn_judge(ndvi, fdi):
             judge_data = model.predict(target)
             result_data_row.append(judge_data[0])
         result_data.append(result_data_row)
+
+    with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='wb') as f:
+        pickle.dump(result_data, f)
 
     #print("Judge End time : ",end_time)
     return result_data

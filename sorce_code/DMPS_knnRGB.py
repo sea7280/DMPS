@@ -3,11 +3,16 @@ from osgeo import gdal
 import matplotlib.image as mpimg
 import os
 import tkinter as tk
+import pickle
 
-def knnRGB(judegedata,filepath,entry_detail, point_list):
+def knnRGB(filepath,entry_detail, point_list):
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
+    
+    with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
+        judegedata = pickle.load(f)
+    
 
     #-------------------------------- カラー合成 -------------------------------
     band2_8bit_path=os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"

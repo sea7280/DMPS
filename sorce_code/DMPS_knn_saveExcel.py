@@ -1,13 +1,16 @@
 import openpyxl
 import os
 from openpyxl.styles import PatternFill
+import pickle
 
-def knnSaveExcel(data,string):
+def knnSaveExcel(string):
+    with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
+        judegedata = pickle.load(f)
     #エクセルに判定結果を保存
     wb = openpyxl.Workbook()
     ws = wb.worksheets[0]
     ws.title = "判定結果"
-    write_excel(data,wb["判定結果"])
+    write_excel(judegedata,wb["判定結果"])
     wb.save(os.getcwd() + f"/judge/判定結果_{string}.xlsx")
     #end_time = datetime.datetime.now()
 
