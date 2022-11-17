@@ -5,18 +5,19 @@ sys.dont_write_bytecode = True
 import DMPS_exit as exit
 import DMPS_admin as admin
 import DMPS_loadDataFile as loadDataFile
+import DMPS_loadSetting as loadSetting
 
 
 def create_button(master, entry, listbox):
         entry_list = entry
         
-        Button = tk.Button(master,text=u'hist', width=5)
+        Button = tk.Button(master,text=u'hist', width=5, command=lambda:admin.admin(entry_list, listbox, mode="hist"))
         Button.place(x=285,y=145)
         Button = tk.Button(master,text=u'...', height=1 ,width=2, command=lambda:loadDataFile.load_dataFile(entry_list[0]))
         Button.place(x=420,y=70)
         Button = tk.Button(master,text=u'...',height=1 ,width=2, command=lambda:loadDataFile.load_dataFile(entry_list[1]))
         Button.place(x=420,y=95)
-        Button = tk.Button(master,text=u'Load Setting', width=11)
+        Button = tk.Button(master,text=u'Load Setting', width=11, command=lambda:loadSetting.read_setting_file(entry_list))
         Button.place(x=470,y=70)
         Button = tk.Button(master,text=u'RGB', width=11, command=lambda:admin.admin(entry_list, listbox, mode="rgb"))
         Button.place(x=470,y=100)

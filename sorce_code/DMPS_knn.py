@@ -28,7 +28,7 @@ def knn_judge(ndvi, fdi):
 
     model = KNeighborsClassifier(n_neighbors=6) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
     #model.fit(X_train, y_train) #学習モデル構築。引数に訓練データの特徴量と、それに対応したラベル
-    model.fit(df_X, df_Y)
+    model.fit(df_X, df_Y.values.ravel())
 
     result_data = []
     for count_all in range(len(ndvi)):
@@ -41,6 +41,7 @@ def knn_judge(ndvi, fdi):
             result_data_row.append(judge_data[0])
         result_data.append(result_data_row)
 
+#pickleで検出結果の保持
     with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 

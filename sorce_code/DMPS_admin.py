@@ -11,9 +11,11 @@ import DMPS_saveSettings as saveSettings
 import DMPS_knn as knn
 import DMPS_knn_saveExcel as knnSave
 import DMPS_knnRGB as knnRGB
+import DMPS_hist as hist
 
 def admin(entry,listbox, mode):
 
+#entryの入力値を配列に格納
     filePath       = entry[0].get()         #0
     filePathAco    = entry[1].get()         #1
     luminance      = int(entry[2].get())    #2
@@ -33,8 +35,10 @@ def admin(entry,listbox, mode):
                   ndvi_min, ndvi_max, fdi_min, fdi_max, 
                   saveFileName, title]
 
+#衛星データのパスを配列に格納
     satellite_filepath = pathGet.pathGet(entry)
 
+#ボタンによって処理が変わる
     if satellite_filepath[0] == None:
         pass
     else:
@@ -62,3 +66,5 @@ def admin(entry,listbox, mode):
             knn.knn_judge(ndvi_result, fdi_result)
             knnSave.knnSaveExcel(saveFileName)
             knnRGB.knnRGB(satellite_filepath, entry_data, listbox)
+        elif mode == 'hist':
+            hist.luminance(satellite_filepath, entry_data)
