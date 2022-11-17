@@ -12,6 +12,7 @@ import DMPS_knn as knn
 import DMPS_knn_saveExcel as knnSave
 import DMPS_knnRGB as knnRGB
 import DMPS_hist as hist
+import DMPS_reloadJudgeRGB as reloadJudge
 
 def admin(entry,listbox, mode):
 
@@ -68,3 +69,5 @@ def admin(entry,listbox, mode):
             knnRGB.knnRGB(satellite_filepath, entry_data, listbox)
         elif mode == 'hist':
             hist.luminance(satellite_filepath, entry_data)
+        elif mode == "reload":
+            reloadJudge.reloadJudgeRGB(satellite_filepath, entry_data, listbox)

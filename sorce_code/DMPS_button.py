@@ -6,6 +6,7 @@ import DMPS_exit as exit
 import DMPS_admin as admin
 import DMPS_loadDataFile as loadDataFile
 import DMPS_loadSetting as loadSetting
+import DMPS_listDelete as listDelete
 
 
 def create_button(master, entry, listbox):
@@ -35,8 +36,8 @@ def create_button(master, entry, listbox):
         Button.place(x=470,y=280)
         Button = tk.Button(master,text=u'Exit', width=11,command=lambda:exit.exit_window(master))
         Button.place(x=470,y=310)
-        Button = tk.Button(master,text=u'del', width=5)
+        Button = tk.Button(master,text=u'del', width=5, command=lambda:listDelete.list_delete(listbox))
         Button.place(x=580,y=300)
-        Button = tk.Button(master,text=u'load', width=5)
+        Button = tk.Button(master,text=u'load', width=5,command=lambda:admin.admin(entry_list, listbox, mode="reload"))
         Button.place(x=635,y=300)
 

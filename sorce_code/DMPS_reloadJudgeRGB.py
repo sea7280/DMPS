@@ -1,0 +1,141 @@
+import matplotlib.pyplot as plt
+from osgeo import gdal
+import matplotlib.image as mpimg
+import os
+import tkinter as tk
+import pickle
+import numpy as np
+import sys
+sys.dont_write_bytecode = True
+
+def reloadJudgeRGB(filepath,entry_detail, point_list):
+#サイズの取得
+    minX          = entry_detail[4]
+    minY          = entry_detail[5]
+    deltaX        = entry_detail[6]
+    deltaY        = entry_detail[6]
+    path = filepath[0]
+    getSize_path=os.path.dirname(__file__) + "/tif_file/getSize_8bit.tif"
+    gdal.Translate(getSize_path,path,outputType=gdal.GDT_Byte, srcWin=[minX,minY,deltaX,deltaY])
+    band_image=gdal.Open(getSize_path)
+    Band_array = band_image.ReadAsArray()
+
+    maxSizeX = len(Band_array[0])
+    maxSizeY = len(Band_array)
+
+#座標の取得
+    index = point_list.curselection()
+    point = point_list.get(index)
+    delete = ["Point: ", " ", "[", "]"]
+    for i in delete:
+        point = point.replace(i, "")
+    point = point.split(",")
+    centerX, centerY = int(point[0]), int(point[1])
+#拡大範囲の決定
+#0以下になったら0になるように設定
+    expansionRange = 50
+    if expansionRange > maxSizeY:
+        expansionRange = round(maxSizeY * 0.5)
+    expansionRange_half = round(expansionRange *0.5 - 1)
+    minX, minY = centerX - expansionRange_half, centerY - expansionRange_half
+    if minX < 0:
+        minX = 0
+    if minY < 0:
+        minY = 0
+#画像サイズを超える場合収まるように設定
+
+    if minX + expansionRange > maxSizeX-1:
+        deltaX = maxSizeX - minX
+    else:
+        deltaX = expansionRange
+
+    if minY + expansionRange > maxSizeY-1:
+        deltaY = maxSizeY - minY
+    else:
+        deltaY = expansionRange
+
+    minX          = minX + entry_detail[4]
+    minY          = minY + entry_detail[5]
+    max_luminance = entry_detail[2]
+
+    bluepath  = filepath[0]
+    greenpath = filepath[1]
+    redpath   = filepath[2]
+    
+    with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
+        judegedata = pickle.load(f)
+####################################### judge data の切り抜きがうまくいかない　2022/11/17
+    raw = np.arange(minX)
+    row = np.arange(minY)
+    judegedata = np.delete(judegedata,row,axis=0)
+    judegedata = np.delete(judegedata,raw,axis=1)
+
+    raw_delta = np.arange(deltaX,len(judegedata[0]),1)
+    row_delta = np.arange(deltaY,len(judegedata),1)
+    judegedata = np.delete(judegedata,row_delta,axis=0)
+    judegedata = np.delete(judegedata,raw_delta,axis=1)
+
+    band2_8bit_path=os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"
+    band3_8bit_path=os.path.dirname(__file__) + "/tif_file/Band3_8bit.tif"
+    band4_8bit_path=os.path.dirname(__file__) + "/tif_file/Band4_8bit.tif"
+
+    gdal.Translate(band2_8bit_path,bluepath,  scaleParams=[[0,max_luminance]],outputType=gdal.GDT_Byte, srcWin=[minX,minY,deltaX,deltaY])
+    gdal.Translate(band3_8bit_path,greenpath, scaleParams=[[0,max_luminance]],outputType=gdal.GDT_Byte, srcWin=[minX,minY,deltaX,deltaY])
+    gdal.Translate(band4_8bit_path,redpath,   scaleParams=[[0,max_luminance]],outputType=gdal.GDT_Byte, srcWin=[minX,minY,deltaX,deltaY])
+
+    b2_image=gdal.Open(band2_8bit_path)
+    b3_image=gdal.Open(band3_8bit_path)
+    b4_image=gdal.Open(band4_8bit_path)
+
+    BlueBand_array  = b2_image.ReadAsArray()
+    GreenBand_array = b3_image.ReadAsArray()
+    RedBand_array   = b4_image.ReadAsArray()
+
+    size_y = deltaY
+    size_x = deltaX
+    for y in range(size_y):
+        y = y
+        for x in range(size_x):
+            x = x
+            if judegedata[y][x] == "plastic":
+                RedBand_array[y][x] = 255
+                GreenBand_array[y][x] = 0
+                BlueBand_array[y][x] = 0
+            elif judegedata[y][x] == "ship":
+                RedBand_array[y][x] = 0
+                GreenBand_array[y][x] = 0
+                BlueBand_array[y][x] = 255
+            elif judegedata[y][x] == "water":
+                pass
+            elif judegedata[y][x] == "wood":
+                pass
+            elif judegedata[y][x] == "pumice":
+                pass
+
+    Xsize=b2_image.RasterXSize #band2の画像のX方向ピクセル数
+    Ysize=b2_image.RasterYSize #band2の画像のY方向ピクセル数
+    dtype=gdal.GDT_Byte
+    band=3
+
+    out_True_path =os.path.dirname(__file__) + "/tif_file/truecolor.tif"
+    out1= gdal.GetDriverByName('GTiff').Create(out_True_path, Xsize, Ysize, band, dtype)
+    out1.SetProjection(b2_image.GetProjection())
+    out1.SetGeoTransform(b2_image.GetGeoTransform())
+
+    out1.GetRasterBand(1).WriteArray(RedBand_array)   #赤の配列を赤バンドに書き込む
+    out1.GetRasterBand(2).WriteArray(GreenBand_array) #緑の配列を緑バンドに書き込む
+    out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
+    out1.FlushCache()
+
+#---------------------------------------- 出力 -----------------------------------------
+
+    plt.figure(figsize=(7,5))
+
+    image1 = mpimg.imread(out_True_path)
+    plt.imshow(image1)
+    plt.title("TrueColor(Detect from judge data)")
+
+
+    plt.show()
+
+
