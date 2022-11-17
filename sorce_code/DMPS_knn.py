@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 # k-近傍法（k-NN）
 from sklearn.neighbors import KNeighborsClassifier
 import pickle
+import sys
+sys.dont_write_bytecode = True
 
 def knn_judge(ndvi, fdi):
 

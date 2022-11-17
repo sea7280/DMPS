@@ -2,6 +2,8 @@
 from osgeo import gdal
 from tkinter import messagebox
 import os
+import sys
+sys.dont_write_bytecode = True
 
 def calc_ndvi(filepath,entry_detail):
 #--------------------------------------------- path ---------------------------------------------------------

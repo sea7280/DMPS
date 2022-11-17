@@ -1,7 +1,8 @@
 #パス取得
 
 import glob
-
+import sys
+sys.dont_write_bytecode = True
 
 def pathGet(entry):
     data_file = entry[0].get()

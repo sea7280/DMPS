@@ -1,4 +1,6 @@
 import tkinter as tk
+import sys
+sys.dont_write_bytecode = True
 
 import DMPS_exit as exit
 import DMPS_admin as admin

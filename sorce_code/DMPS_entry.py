@@ -1,4 +1,6 @@
 import tkinter as tk
+import sys
+sys.dont_write_bytecode = True
 
 def create_entry(master):
     entry_file         = tk.Entry(master, width=50, font=("", 8 ))

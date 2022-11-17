@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
-
+import sys
+sys.dont_write_bytecode = True
 
 #------------------------------------ image ---------------------------------------
 def image_create(data,min,max,title):

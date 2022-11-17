@@ -1,7 +1,8 @@
 from tkinter import messagebox
 import datetime
 import os
-
+import sys
+sys.dont_write_bytecode = True
 
 def saveSettings(entry_detail):
 

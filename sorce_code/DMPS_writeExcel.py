@@ -3,6 +3,8 @@ from tkinter import messagebox
 import os
 from osgeo import gdal
 import numpy as np
+import sys
+sys.dont_write_bytecode = True
 
 def saveExcel(filepath, entry_detail, ndviData, fdiData):
     def write_excel(band,sheet):

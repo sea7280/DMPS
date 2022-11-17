@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 import DMPS_pathGet as pathGet
 import DMPS_image as dataImage
 import DMPS_truecolor as truecolor

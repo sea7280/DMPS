@@ -4,6 +4,8 @@ import matplotlib.image as mpimg
 import os
 import tkinter as tk
 import pickle
+import sys
+sys.dont_write_bytecode = True
 
 def knnRGB(filepath,entry_detail, point_list):
     bluepath  = filepath[0]

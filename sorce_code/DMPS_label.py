@@ -1,4 +1,6 @@
 import tkinter as tk
+import sys
+sys.dont_write_bytecode = True
 
 def create_label(master):
     label = tk.Label(master, text=u'Select File'   , bg="gray80", font=("",12), width=12, anchor=tk.CENTER).place(x=80, y=40)

@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 from osgeo import gdal
 import matplotlib.image as mpimg
 import os
+import sys
+sys.dont_write_bytecode = True
 
 def truecolor(filepath,entry_detail):
     bluepath  = filepath[0]

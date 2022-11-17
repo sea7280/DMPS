@@ -2,6 +2,8 @@ import openpyxl
 import os
 from openpyxl.styles import PatternFill
 import pickle
+import sys
+sys.dont_write_bytecode = True
 
 def knnSaveExcel(string):
     with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
