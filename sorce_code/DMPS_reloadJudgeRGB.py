@@ -37,25 +37,25 @@ def reloadJudgeRGB(filepath,entry_detail, point_list):
     if expansionRange > maxSizeY:
         expansionRange = round(maxSizeY * 0.5)
     expansionRange_half = round(expansionRange *0.5 - 1)
-    minX, minY = centerX - expansionRange_half, centerY - expansionRange_half
-    if minX < 0:
-        minX = 0
-    if minY < 0:
-        minY = 0
+    deltaMinX, deltaMinY = centerX - expansionRange_half, centerY - expansionRange_half
+    if deltaMinX < 0:
+        deltaMinX = 0
+    if deltaMinY < 0:
+        deltaMinY = 0
 #画像サイズを超える場合収まるように設定
 
-    if minX + expansionRange > maxSizeX-1:
-        deltaX = maxSizeX - minX
+    if deltaMinX + expansionRange > maxSizeX-1:
+        deltaX = maxSizeX - deltaMinX
     else:
         deltaX = expansionRange
 
-    if minY + expansionRange > maxSizeY-1:
-        deltaY = maxSizeY - minY
+    if deltaMinY + expansionRange > maxSizeY-1:
+        deltaY = maxSizeY - deltaMinY
     else:
         deltaY = expansionRange
 
-    minX          = minX + entry_detail[4]
-    minY          = minY + entry_detail[5]
+    minX          = deltaMinX + entry_detail[4]
+    minY          = deltaMinY + entry_detail[5]
     max_luminance = entry_detail[2]
 
     bluepath  = filepath[0]
@@ -64,9 +64,9 @@ def reloadJudgeRGB(filepath,entry_detail, point_list):
     
     with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
         judegedata = pickle.load(f)
-####################################### judge data の切り抜きがうまくいかない　2022/11/17
-    raw = np.arange(minX)
-    row = np.arange(minY)
+
+    raw = np.arange(deltaMinX)
+    row = np.arange(deltaMinY)
     judegedata = np.delete(judegedata,row,axis=0)
     judegedata = np.delete(judegedata,raw,axis=1)
 
