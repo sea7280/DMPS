@@ -1,0 +1,8 @@
+#ver管理不要なフォルダの指定
+excel/
+pickle_log/
+setting/
+judge/
+sorce_code/tif_file/
+sorce_code/pickle/
+sorce_code/test.py
