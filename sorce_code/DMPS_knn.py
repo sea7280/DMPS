@@ -9,9 +9,9 @@ import pickle
 import sys
 sys.dont_write_bytecode = True
 
-def knn_judge(ndvi, fdi):
+def knn_judge(ndvi, fdi, entry_detail):
 
-    #start_time = datetime.datetime.now()
+    start_time = datetime.datetime.now()
     #print(start_time)
 
     excel_path = os.getcwd() + '\\teacherData\\teacherData_ver7.1.xlsx'
@@ -43,6 +43,10 @@ def knn_judge(ndvi, fdi):
 
 #pickleで検出結果の保持
     with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='wb') as f:
+        pickle.dump(result_data, f)
+#log用
+    string = entry_detail[11]
+    with open(os.getcwd() + f"/pickle_log/{string}_" + start_time.strftime('%Y年%m月%d日%H時%M分%S秒') + ".pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 
     #print("Judge End time : ",end_time)

@@ -7,14 +7,16 @@ import pickle
 import sys
 sys.dont_write_bytecode = True
 
-def knnRGB(filepath,entry_detail, point_list):
+def knnRGB(filepath,entry_detail, point_list, load):
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
     
-    with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
-        judegedata = pickle.load(f)
-    
+    if load == None:
+        with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='rb') as f:
+            judegedata = pickle.load(f)
+    else:
+        judegedata = load
 
     #-------------------------------- カラー合成 -------------------------------
     band2_8bit_path=os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"
