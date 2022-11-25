@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import datetime
+import numpy as np
 # 学習用データとテストデータに分けるためのモジュール（正解率を出すため）
 from sklearn.model_selection import train_test_split
 # k-近傍法（k-NN）
@@ -9,11 +10,14 @@ from sklearn.preprocessing import StandardScaler
 import pickle
 import sys
 sys.dont_write_bytecode = True
+import warnings
+warnings.simplefilter('ignore', UserWarning)
+
 
 def knn_judge(ndvi, fdi, setting_detail):
 
     start_time = datetime.datetime.now()
-    #print(start_time)
+    print(start_time)
 
     excel_path = os.getcwd() + '\\teacherData\\teacherData_ver7.1.xlsx'
     excel_file = pd.read_excel(excel_path)
@@ -36,12 +40,14 @@ def knn_judge(ndvi, fdi, setting_detail):
         df_X = sc.transform(df_X)
         raw = len(ndvi)
         row = len(ndvi[0])
+        
         ndvi = ndvi.flatten()
         fdi  = fdi.flatten()
-        ndvi = sc.transform(ndvi)
-        fdi  = sc.transform(fdi)
-        ndvi = ndvi.reshape(raw, row)
-        fdi  = fdi.reshape(raw, row)
+        data = np.array([ndvi, fdi])
+        data = sc.transform(data.T)
+        ndvi = data.T[0].reshape(raw, row)
+        fdi  = data.T[1].reshape(raw, row)
+        data = None
 
     model = KNeighborsClassifier(n_neighbors=6) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
     #model.fit(X_train, y_train) #学習モデル構築。引数に訓練データの特徴量と、それに対応したラベル
@@ -64,5 +70,6 @@ def knn_judge(ndvi, fdi, setting_detail):
     with open(os.getcwd() + f"/pickle_log/{string}_" + start_time.strftime('%Y年%m月%d日%H時%M分%S秒') + ".pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 
-    #print("Judge End time : ",end_time)
+    end_time = datetime.datetime.now()
+    print("Judge End time : ",end_time)
     return result_data
