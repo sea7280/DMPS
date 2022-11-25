@@ -7,7 +7,7 @@ import pickle
 import sys
 sys.dont_write_bytecode = True
 
-def knnRGB(filepath,entry_detail, point_list, load):
+def knnRGB(filepath,setting_detail, point_list, load):
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
@@ -24,11 +24,11 @@ def knnRGB(filepath,entry_detail, point_list, load):
     band4_8bit_path=os.path.dirname(__file__) + "/tif_file/Band4_8bit.tif"
 
     #切り出しの詳細
-    minX          = entry_detail[4]
-    minY          = entry_detail[5]
-    deltaX        = entry_detail[6]
-    deltaY        = entry_detail[6]
-    max_luminance = entry_detail[2]
+    minX          = setting_detail[4]
+    minY          = setting_detail[5]
+    deltaX        = setting_detail[6]
+    deltaY        = setting_detail[6]
+    max_luminance = setting_detail[2]
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
     #gdal.Translate({出力画像名}, {入力画像名}, outputType={データ形式設定} , scaleParams=[[min,max]], srcWin=[minX,minY,deltaX,deltaY])

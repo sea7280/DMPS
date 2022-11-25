@@ -6,7 +6,7 @@ import numpy as np
 import sys
 sys.dont_write_bytecode = True
 
-def saveExcel(filepath, entry_detail, ndviData, fdiData):
+def saveExcel(filepath, setting_detail, ndviData, fdiData):
     def write_excel(band,sheet):
         ws = sheet
         size_y = len(band)
@@ -15,11 +15,11 @@ def saveExcel(filepath, entry_detail, ndviData, fdiData):
             for j in range(size_x):
                 ws.cell(row=i + 1,column=j + 1).value = band[i][j]
 
-    minX      = entry_detail[4]
-    minY      = entry_detail[5]
-    deltaX    = entry_detail[6]
-    deltaY    = entry_detail[6]
-    string    = entry_detail[11]
+    minX      = setting_detail[4]
+    minY      = setting_detail[5]
+    deltaX    = setting_detail[6]
+    deltaY    = setting_detail[6]
+    string    = setting_detail[11]
 
     bluepath        = filepath[0]
     greenpath       = filepath[1]

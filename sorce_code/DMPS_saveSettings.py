@@ -4,21 +4,21 @@ import os
 import sys
 sys.dont_write_bytecode = True
 
-def saveSettings(entry_detail):
+def saveSettings(setting_detail):
 
-    satpath        = entry_detail[0]
-    acopath        = entry_detail[1]
-    maxluminance   = entry_detail[2]
-    hist_luminance = entry_detail[3]
-    px             = entry_detail[4]
-    py             = entry_detail[5]
-    dt             = entry_detail[6]
-    ndvi_min       = entry_detail[7]
-    ndvi_max       = entry_detail[8]
-    fdi_min        = entry_detail[9]
-    fdi_max        = entry_detail[10]
-    fn             = entry_detail[11]
-    title          = entry_detail[12]
+    satpath        = setting_detail[0]
+    acopath        = setting_detail[1]
+    maxluminance   = setting_detail[2]
+    hist_luminance = setting_detail[3]
+    px             = setting_detail[4]
+    py             = setting_detail[5]
+    dt             = setting_detail[6]
+    ndvi_min       = setting_detail[7]
+    ndvi_max       = setting_detail[8]
+    fdi_min        = setting_detail[9]
+    fdi_max        = setting_detail[10]
+    fn             = setting_detail[11]
+    title          = setting_detail[12]
     
     if fn == "":
         messagebox.showerror('Error', 'No Save File Name')

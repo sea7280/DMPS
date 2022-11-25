@@ -3,13 +3,13 @@ from osgeo import gdal
 import sys
 sys.dont_write_bytecode = True
 
-def luminance(filepath,entry_detail):
+def luminance(filepath,setting_detail):
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
     nirpath   = filepath[3]
-    range_max = entry_detail[3]
-    title     = entry_detail[12]
+    range_max = setting_detail[3]
+    title     = setting_detail[12]
 
     band_image1=gdal.Open(bluepath)
     band_image2=gdal.Open(greenpath)

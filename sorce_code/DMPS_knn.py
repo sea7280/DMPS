@@ -5,11 +5,12 @@ import datetime
 from sklearn.model_selection import train_test_split
 # k-近傍法（k-NN）
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 import pickle
 import sys
 sys.dont_write_bytecode = True
 
-def knn_judge(ndvi, fdi, entry_detail):
+def knn_judge(ndvi, fdi, setting_detail):
 
     start_time = datetime.datetime.now()
     #print(start_time)
@@ -25,12 +26,26 @@ def knn_judge(ndvi, fdi, entry_detail):
     df_Y = df_Y.drop(drop_idx,axis=1)
 
     #X_train, X_test, y_train, y_test = train_test_split(df_X, df_Y, random_state=0) #ここから学習用データとテスト用データに分ける。random_stateは乱数を固定
+    result_data = []
+    if setting_detail[13].get() == False:
+        pass
+    elif setting_detail[13].get() == True:
+        #標準化
+        sc = StandardScaler()
+        sc.fit(df_X)
+        df_X = sc.transform(df_X)
+        raw = len(ndvi)
+        row = len(ndvi[0])
+        ndvi = ndvi.flatten()
+        fdi  = fdi.flatten()
+        ndvi = sc.transform(ndvi)
+        fdi  = sc.transform(fdi)
+        ndvi = ndvi.reshape(raw, row)
+        fdi  = fdi.reshape(raw, row)
 
     model = KNeighborsClassifier(n_neighbors=6) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
     #model.fit(X_train, y_train) #学習モデル構築。引数に訓練データの特徴量と、それに対応したラベル
     model.fit(df_X, df_Y.values.ravel())
-
-    result_data = []
     for count_all in range(len(ndvi)):
         result_data_row = []
         for count in range(len(ndvi[count_all])):
@@ -45,7 +60,7 @@ def knn_judge(ndvi, fdi, entry_detail):
     with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 #log用
-    string = entry_detail[11]
+    string = setting_detail[11]
     with open(os.getcwd() + f"/pickle_log/{string}_" + start_time.strftime('%Y年%m月%d日%H時%M分%S秒') + ".pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 

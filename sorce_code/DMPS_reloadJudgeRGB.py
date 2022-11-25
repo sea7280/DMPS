@@ -8,12 +8,12 @@ import numpy as np
 import sys
 sys.dont_write_bytecode = True
 
-def reloadJudgeRGB(filepath,entry_detail, point_list):
+def reloadJudgeRGB(filepath,setting_detail, point_list):
 #サイズの取得
-    minX          = entry_detail[4]
-    minY          = entry_detail[5]
-    deltaX        = entry_detail[6]
-    deltaY        = entry_detail[6]
+    minX          = setting_detail[4]
+    minY          = setting_detail[5]
+    deltaX        = setting_detail[6]
+    deltaY        = setting_detail[6]
     path = filepath[0]
     getSize_path=os.path.dirname(__file__) + "/tif_file/getSize_8bit.tif"
     gdal.Translate(getSize_path,path,outputType=gdal.GDT_Byte, srcWin=[minX,minY,deltaX,deltaY])
@@ -54,9 +54,9 @@ def reloadJudgeRGB(filepath,entry_detail, point_list):
     else:
         deltaY = expansionRange
 
-    minX          = deltaMinX + entry_detail[4]
-    minY          = deltaMinY + entry_detail[5]
-    max_luminance = entry_detail[2]
+    minX          = deltaMinX + setting_detail[4]
+    minY          = deltaMinY + setting_detail[5]
+    max_luminance = setting_detail[2]
 
     bluepath  = filepath[0]
     greenpath = filepath[1]

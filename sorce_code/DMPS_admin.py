@@ -15,7 +15,7 @@ import DMPS_hist as hist
 import DMPS_reloadJudgeRGB as reloadJudge
 import DMPS_loadJudgeLog as JudgeLog
 
-def admin(entry,listbox, mode):
+def admin(entry, listbox, chk, mode):
 
 #entryの入力値を配列に格納
     filePath       = entry[0].get()         #0
@@ -31,12 +31,13 @@ def admin(entry,listbox, mode):
     fdi_max        = float(entry[10].get()) #10
     saveFileName   = entry[11].get()        #11
     title          = entry[12].get()        #12
+    check          = chk                    #13
 
-#変数：entry_detail
-    entry_detail = [filePath, filePathAco, luminance, luminance_hist
+#変数：setting_detail
+    setting_detail = [filePath, filePathAco, luminance, luminance_hist
                   , minX, minY, delta, 
                   ndvi_min, ndvi_max, fdi_min, fdi_max, 
-                  saveFileName, title]
+                  saveFileName, title, check]
 
 #衛星データのパスを配列に格納
     satellite_filepath = pathGet.pathGet(entry)
@@ -46,33 +47,33 @@ def admin(entry,listbox, mode):
         pass
     else:
         if mode == "rgb":
-            truecolor.truecolor(satellite_filepath, entry_detail)
+            truecolor.truecolor(satellite_filepath, setting_detail)
         elif mode == 'ndvi':
-            ndvi_result = ndvi.calc_ndvi(satellite_filepath, entry_detail)
-            dataImage.image_create(ndvi_result, entry_detail[7], entry_detail[8], entry_detail[12])
+            ndvi_result = ndvi.calc_ndvi(satellite_filepath, setting_detail)
+            dataImage.image_create(ndvi_result, setting_detail[7], setting_detail[8], setting_detail[12])
         elif mode == 'fdi':
-            fdi_result = fdi.calc_fdi(satellite_filepath, entry_detail)
-            dataImage.image_create(fdi_result, entry_detail[9], entry_detail[10], entry_detail[12])
+            fdi_result = fdi.calc_fdi(satellite_filepath, setting_detail)
+            dataImage.image_create(fdi_result, setting_detail[9], setting_detail[10], setting_detail[12])
         elif mode == 'ndvi&fdi':
-            ndvi_result = ndvi.calc_ndvi(satellite_filepath, entry_detail)
-            fdi_result = fdi.calc_fdi(satellite_filepath, entry_detail)
-            dataImage.image_create_double(ndvi_result, fdi_result, entry_detail[7], entry_detail[8], entry_detail[9], entry_detail[10])
+            ndvi_result = ndvi.calc_ndvi(satellite_filepath, setting_detail)
+            fdi_result = fdi.calc_fdi(satellite_filepath, setting_detail)
+            dataImage.image_create_double(ndvi_result, fdi_result, setting_detail[7], setting_detail[8], setting_detail[9], setting_detail[10])
         elif mode == 'excel':
-            ndvi_result = ndvi.calc_ndvi(satellite_filepath, entry_detail)
-            fdi_result = fdi.calc_fdi(satellite_filepath, entry_detail)
-            writeExcel.saveExcel(satellite_filepath, entry_detail, ndvi_result, fdi_result)
+            ndvi_result = ndvi.calc_ndvi(satellite_filepath, setting_detail)
+            fdi_result = fdi.calc_fdi(satellite_filepath, setting_detail)
+            writeExcel.saveExcel(satellite_filepath, setting_detail, ndvi_result, fdi_result)
         elif mode == 'saveSetting':
-            saveSettings.saveSettings(entry_detail)
+            saveSettings.saveSettings(setting_detail)
         elif mode == 'judge':
-            ndvi_result = ndvi.calc_ndvi(satellite_filepath, entry_detail)
-            fdi_result  = fdi.calc_fdi(satellite_filepath, entry_detail)
-            knn.knn_judge(ndvi_result, fdi_result, entry_detail)
+            ndvi_result = ndvi.calc_ndvi(satellite_filepath, setting_detail)
+            fdi_result  = fdi.calc_fdi(satellite_filepath, setting_detail)
+            knn.knn_judge(ndvi_result, fdi_result, setting_detail)
             knnSave.knnSaveExcel(saveFileName)
-            knnRGB.knnRGB(satellite_filepath, entry_detail, listbox, load=None)
+            knnRGB.knnRGB(satellite_filepath, setting_detail, listbox, load=None)
         elif mode == 'loadJudge':
             log = JudgeLog.loadJudgeLog()
-            knnRGB.knnRGB(satellite_filepath, entry_detail, listbox, load=log)
+            knnRGB.knnRGB(satellite_filepath, setting_detail, listbox, load=log)
         elif mode == 'hist':
-            hist.luminance(satellite_filepath, entry_detail)
+            hist.luminance(satellite_filepath, setting_detail)
         elif mode == "reload":
-            reloadJudge.reloadJudgeRGB(satellite_filepath, entry_detail, listbox)
+            reloadJudge.reloadJudgeRGB(satellite_filepath, setting_detail, listbox)

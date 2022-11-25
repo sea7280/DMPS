@@ -5,7 +5,7 @@ import os
 import sys
 sys.dont_write_bytecode = True
 
-def calc_ndvi(filepath,entry_detail):
+def calc_ndvi(filepath,setting_detail):
 #--------------------------------------------- path ---------------------------------------------------------
 
     redpath = filepath[2]
@@ -13,10 +13,10 @@ def calc_ndvi(filepath,entry_detail):
 
 #--------------------------------------------- range ---------------------------------------------------------
 
-    minX      = entry_detail[4]
-    minY      = entry_detail[5]
-    deltaX    = entry_detail[6]
-    deltaY    = entry_detail[6]
+    minX      = setting_detail[4]
+    minY      = setting_detail[5]
+    deltaX    = setting_detail[6]
+    deltaY    = setting_detail[6]
 
 #--------------------------------------------- tif ---------------------------------------------------------
 

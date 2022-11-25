@@ -5,7 +5,7 @@ import os
 import sys
 sys.dont_write_bytecode = True
 
-def truecolor(filepath,entry_detail):
+def truecolor(filepath,setting_detail):
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
@@ -16,11 +16,11 @@ def truecolor(filepath,entry_detail):
     band4_8bit_path=os.path.dirname(__file__) + "/tif_file/Band4_8bit.tif"
 
     #切り出しの詳細
-    minX          = entry_detail[4]
-    minY          = entry_detail[5]
-    deltaX        = entry_detail[6]
-    deltaY        = entry_detail[6]
-    max_luminance = entry_detail[2]
+    minX          = setting_detail[4]
+    minY          = setting_detail[5]
+    deltaX        = setting_detail[6]
+    deltaY        = setting_detail[6]
+    max_luminance = setting_detail[2]
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
     #gdal.Translate({出力画像名}, {入力画像名}, outputType={データ形式設定} , scaleParams=[[min,max]], srcWin=[minX,minY,deltaX,deltaY])
@@ -66,6 +66,6 @@ def truecolor(filepath,entry_detail):
 
     image1 = mpimg.imread(out_True_path)
     plt.imshow(image1)
-    plt.title(entry_detail[12])
+    plt.title(setting_detail[12])
 
     plt.show()
