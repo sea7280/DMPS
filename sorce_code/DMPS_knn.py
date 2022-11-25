@@ -49,7 +49,7 @@ def knn_judge(ndvi, fdi, setting_detail):
         fdi  = data.T[1].reshape(raw, row)
         data = None
 
-    model = KNeighborsClassifier(n_neighbors=6) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
+    model = KNeighborsClassifier(n_neighbors=7) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
     #model.fit(X_train, y_train) #学習モデル構築。引数に訓練データの特徴量と、それに対応したラベル
     model.fit(df_X, df_Y.values.ravel())
     for count_all in range(len(ndvi)):

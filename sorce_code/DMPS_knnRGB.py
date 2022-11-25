@@ -96,7 +96,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
 
     image1 = mpimg.imread(out_True_path)
     plt.imshow(image1)
-    plt.title("TrueColor(Detect from judge data)")
+    plt.title(setting_detail[12])
 
 
 
