@@ -7,6 +7,9 @@ import pickle
 import numpy as np
 import sys
 sys.dont_write_bytecode = True
+from PIL import Image
+Image.MAX_IMAGE_PIXELS = None
+
 
 def reloadJudgeRGB(filepath,setting_detail, point_list):
 #サイズの取得

@@ -4,6 +4,8 @@ import matplotlib.image as mpimg
 import os
 import sys
 sys.dont_write_bytecode = True
+from PIL import Image
+Image.MAX_IMAGE_PIXELS = None
 
 def truecolor(filepath,setting_detail):
     bluepath  = filepath[0]

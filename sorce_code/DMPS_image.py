@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import sys
 sys.dont_write_bytecode = True
+from PIL import Image
+Image.MAX_IMAGE_PIXELS = None
 
 #------------------------------------ image ---------------------------------------
 def image_create(data,min,max,title):

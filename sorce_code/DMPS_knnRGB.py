@@ -6,6 +6,8 @@ import tkinter as tk
 import pickle
 import sys
 sys.dont_write_bytecode = True
+from PIL import Image
+Image.MAX_IMAGE_PIXELS = None
 
 def knnRGB(filepath,setting_detail, point_list, load):
     bluepath  = filepath[0]
