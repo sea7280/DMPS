@@ -32,12 +32,14 @@ def admin(entry, listbox, chk, mode):
     saveFileName   = entry[11].get()        #11
     title          = entry[12].get()        #12
     check          = chk                    #13
+    load_px        = int(entry[13].get())   #14
+    load_py        = int(entry[14].get())   #15
 
 #変数：setting_detail
     setting_detail = [filePath, filePathAco, luminance, luminance_hist
                   , minX, minY, delta, 
                   ndvi_min, ndvi_max, fdi_min, fdi_max, 
-                  saveFileName, title, check]
+                  saveFileName, title, check, load_px,load_py]
 
 #衛星データのパスを配列に格納
     satellite_filepath = pathGet.pathGet(entry)
@@ -76,4 +78,6 @@ def admin(entry, listbox, chk, mode):
         elif mode == 'hist':
             hist.luminance(satellite_filepath, setting_detail)
         elif mode == "reload":
-            reloadJudge.reloadJudgeRGB(satellite_filepath, setting_detail, listbox)
+            reloadJudge.reloadJudgeRGB(satellite_filepath, setting_detail, listbox, mode="list")
+        elif mode == "pointload":
+            reloadJudge.reloadJudgeRGB(satellite_filepath, setting_detail, listbox, mode="point")

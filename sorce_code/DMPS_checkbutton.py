@@ -8,5 +8,5 @@ def create_checkbutton(master):
 
     # チェックボタン作成
     chk = tk.Checkbutton(master, variable=bln, text='Standardization')
-    chk.place(x=580, y=335)
+    chk.place(x=220, y=335)
     return bln

@@ -42,4 +42,6 @@ def create_button(master, entry, listbox, chk):
         Button.place(x=580,y=300)
         Button = tk.Button(master,text=u'load', width=5,command=lambda:admin.admin(entry_list, listbox, chk, mode="reload"))
         Button.place(x=635,y=300)
+        Button = tk.Button(master,text=u'point load', width=13, command=lambda:admin.admin(entry_list, listbox, chk, mode="pointload"))
+        Button.place(x=580,y=355)
 

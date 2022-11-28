@@ -51,6 +51,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
 
     size_y = len(judegedata)
     size_x = len(judegedata[0])
+    point_list.delete(0, 'end')
     for y in range(size_y):
         for x in range(size_x):
             if judegedata[y][x] == "plastic":

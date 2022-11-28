@@ -16,6 +16,8 @@ def create_entry(master):
     entry_fdi_max      = tk.Entry(master, width=4 , font=("", 10),justify=tk.RIGHT)
     entry_savefile     = tk.Entry(master, width=25, font=("", 10))
     entry_plt_title    = tk.Entry(master, width=25, font=("", 10))
+    entry_load_px      = tk.Entry(master, width=6 , font=("", 10))
+    entry_load_py      = tk.Entry(master, width=6 , font=("", 10))
     
     entry_file.place(        x=110,y=75)
     entry_acolite_file.place(x=110,y=95)
@@ -30,6 +32,8 @@ def create_entry(master):
     entry_fdi_max.place(     x=300,y=245)
     entry_savefile.place(    x=210,y=275)
     entry_plt_title.place(   x=210,y=305)
+    entry_load_px.place(     x=580,y=330)
+    entry_load_py.place(     x=635,y=330)
     
     entry_lumi.insert(0,10000)
     entry_lumi_hist.insert(0,10000)
@@ -41,6 +45,8 @@ def create_entry(master):
     entry_fdi_min.insert(0,0)
     entry_fdi_max.insert(0,0.1)
     entry_plt_title.insert(0,'data')
+    entry_load_px.insert(0,0)
+    entry_load_py.insert(0,0)
 
     entry_list = [entry_file        #0
                 ,entry_acolite_file #1
@@ -54,6 +60,8 @@ def create_entry(master):
                 ,entry_fdi_min      #9
                 ,entry_fdi_max      #10
                 ,entry_savefile     #11
-                ,entry_plt_title]   #12
+                ,entry_plt_title    #12
+                ,entry_load_px      #13
+                ,entry_load_py]     #14
     
     return entry_list
