@@ -19,7 +19,7 @@ def knn_judge(ndvi, fdi, setting_detail):
     start_time = datetime.datetime.now()
     print(start_time)
 
-    excel_path = os.getcwd() + '\\teacherData\\teacherData_ver7.1.xlsx'
+    excel_path = os.getcwd() + '\\teacherData\\teacherData_ver9.xlsx'
     excel_file = pd.read_excel(excel_path)
 
     df_X = excel_file.copy()                    # データをコピーする。
