@@ -14,6 +14,8 @@ import DMPS_knnRGB as knnRGB
 import DMPS_hist as hist
 import DMPS_reloadJudgeRGB as reloadJudge
 import DMPS_loadJudgeLog as JudgeLog
+import DMPS_resulutMapping as resulutMapping
+
 
 def admin(entry, listbox, chk, mode):
 
@@ -75,6 +77,9 @@ def admin(entry, listbox, chk, mode):
         elif mode == 'loadJudge':
             log = JudgeLog.loadJudgeLog()
             knnRGB.knnRGB(satellite_filepath, setting_detail, listbox, load=log)
+        elif mode == "heatmap":
+            log = JudgeLog.loadJudgeLog()
+            resulutMapping.resultMapping(satellite_filepath, setting_detail, load=log)
         elif mode == 'hist':
             hist.luminance(satellite_filepath, setting_detail)
         elif mode == "reload":

@@ -12,14 +12,15 @@ import sys
 sys.dont_write_bytecode = True
 import warnings
 warnings.simplefilter('ignore', UserWarning)
-
+#オーバーサンプリング
+from imblearn.over_sampling import SMOTE
 
 def knn_judge(ndvi, fdi, setting_detail):
 
     start_time = datetime.datetime.now()
     print(start_time)
 
-    excel_path = os.getcwd() + '\\teacherData\\teacherData_ver9.xlsx'
+    excel_path = os.getcwd() + '\\teacherData\\teacherData_ver7.1.1.xlsx'
     excel_file = pd.read_excel(excel_path)
 
     df_X = excel_file.copy()                    # データをコピーする。
@@ -28,6 +29,11 @@ def knn_judge(ndvi, fdi, setting_detail):
     df_X = df_X.drop('検出物質',axis=1)         #取得したExcelデータから属性データのみを取り出す
     drop_idx = ['NDVI','FDI']#取得したExcelデータから目的変数のみを取り出す
     df_Y = df_Y.drop(drop_idx,axis=1)
+
+############################# over sampling ##################################
+    sm = SMOTE(k_neighbors=5) 
+    df_X, df_Y = sm.fit_resample(df_X, df_Y)
+##############################################################################
 
     #X_train, X_test, y_train, y_test = train_test_split(df_X, df_Y, random_state=0) #ここから学習用データとテスト用データに分ける。random_stateは乱数を固定
     result_data = []
