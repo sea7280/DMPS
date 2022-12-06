@@ -2,36 +2,45 @@ import tkinter as tk
 import sys
 sys.dont_write_bytecode = True
 
-def create_entry(master):
-    entry_file         = tk.Entry(master, width=50, font=("", 8 ))
-    entry_acolite_file = tk.Entry(master, width=50, font=("", 8 ))
-    entry_lumi         = tk.Entry(master, width=7 , font=("", 10),justify=tk.RIGHT)
-    entry_lumi_hist    = tk.Entry(master, width=7 , font=("", 10),justify=tk.RIGHT)
-    entry_px           = tk.Entry(master, width=7 , font=("", 10),justify=tk.RIGHT)
-    entry_py           = tk.Entry(master, width=7 , font=("", 10),justify=tk.RIGHT)
-    entry_delta        = tk.Entry(master, width=7 , font=("", 10),justify=tk.RIGHT)
-    entry_ndvi_min     = tk.Entry(master, width=4 , font=("", 10),justify=tk.RIGHT)
-    entry_ndvi_max     = tk.Entry(master, width=4 , font=("", 10),justify=tk.RIGHT)
-    entry_fdi_min      = tk.Entry(master, width=4 , font=("", 10),justify=tk.RIGHT)
-    entry_fdi_max      = tk.Entry(master, width=4 , font=("", 10),justify=tk.RIGHT)
-    entry_savefile     = tk.Entry(master, width=25, font=("", 10))
-    entry_plt_title    = tk.Entry(master, width=25, font=("", 10))
-    entry_load_px      = tk.Entry(master, width=6 , font=("", 10))
-    entry_load_py      = tk.Entry(master, width=6 , font=("", 10))
+def create_entry(area):
+    settingsArea   = area[0]
+    runArea = area[1]
+    detectionArea  = area[2]
+    background = "black"
+    fontcolor = "white"
+    setpositionY = 90
+
+    entry_file         = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8 ))
+    entry_acolite_file = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8 ))
+    entry_lumi         = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_lumi_hist    = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_px           = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_py           = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_deltaX       = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_deltaY       = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_ndvi_min     = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_ndvi_max     = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_fdi_min      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_fdi_max      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
+    entry_savefile     = tk.Entry(settingsArea, width=40, bg=background, fg=fontcolor, font=("", 10))
+    entry_plt_title    = tk.Entry(settingsArea, width=25, bg=background, fg=fontcolor, font=("", 10))
+    entry_load_px      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
+    entry_load_py      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     
-    entry_file.place(        x=110,y=75)
-    entry_acolite_file.place(x=110,y=95)
-    entry_lumi.place(        x=240,y=125)
-    entry_lumi_hist.place(   x=220,y=155)
-    entry_px.place(          x=200,y=185)
-    entry_py.place(          x=260,y=185)
-    entry_delta.place(       x=320,y=185)
-    entry_ndvi_min.place(    x=240,y=215)
-    entry_ndvi_max.place(    x=300,y=215)
-    entry_fdi_min.place(     x=240,y=245)
-    entry_fdi_max.place(     x=300,y=245)
-    entry_savefile.place(    x=210,y=275)
-    entry_plt_title.place(   x=210,y=305)
+    entry_file.place(        x=80,y=setpositionY  + 2)
+    entry_acolite_file.place(x=80,y=setpositionY  + 22)
+    entry_lumi.place(        x=150,y=setpositionY + 82)
+    entry_lumi_hist.place(   x=150,y=setpositionY + 102)
+    entry_px.place(          x=120,y=setpositionY + 142)
+    entry_py.place(          x=190,y=setpositionY + 142)
+    entry_deltaX.place(      x=120,y=setpositionY + 162)
+    entry_deltaY.place(      x=190,y=setpositionY + 162)
+    entry_ndvi_min.place(    x=140,y=setpositionY + 202)
+    entry_ndvi_max.place(    x=190,y=setpositionY + 202)
+    entry_fdi_min.place(     x=140,y=setpositionY + 222)
+    entry_fdi_max.place(     x=190,y=setpositionY + 222)
+    entry_savefile.place(    x=120,y=setpositionY + 262)
+    entry_plt_title.place(   x=120,y=setpositionY + 302)
     entry_load_px.place(     x=580,y=330)
     entry_load_py.place(     x=635,y=330)
     
@@ -39,7 +48,8 @@ def create_entry(master):
     entry_lumi_hist.insert(0,10000)
     entry_px.insert(0,0)
     entry_py.insert(0,0)
-    entry_delta.insert(0,0)
+    entry_deltaX.insert(0,0)
+    entry_deltaY.insert(0,0)
     entry_ndvi_min.insert(0,-1)
     entry_ndvi_max.insert(0,1)
     entry_fdi_min.insert(0,0)
@@ -54,14 +64,15 @@ def create_entry(master):
                 ,entry_lumi_hist    #3
                 ,entry_px           #4
                 ,entry_py           #5
-                ,entry_delta        #6
-                ,entry_ndvi_min     #7
-                ,entry_ndvi_max     #8
-                ,entry_fdi_min      #9
-                ,entry_fdi_max      #10
-                ,entry_savefile     #11
-                ,entry_plt_title    #12
-                ,entry_load_px      #13
-                ,entry_load_py]     #14
+                ,entry_deltaX       #6
+                ,entry_deltaY       #7
+                ,entry_ndvi_min     #8
+                ,entry_ndvi_max     #9
+                ,entry_fdi_min      #10
+                ,entry_fdi_max      #11
+                ,entry_savefile     #12
+                ,entry_plt_title    #13
+                ,entry_load_px      #14
+                ,entry_load_py]     #15
     
     return entry_list

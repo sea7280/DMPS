@@ -1,7 +1,9 @@
+import numpy as np
 
-import os
+judegedata = np.arange(100).reshape((10, 10))
 
-path = os.getcwd()
-print(path + "\excel\excel_.xlsx")
 
-#print(os.path.dirname(__file__) + "/excel/excel_.xlsx")
+data = judegedata[0:5,8:12]
+
+print(judegedata)
+print(data)
