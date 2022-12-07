@@ -9,7 +9,7 @@ import DMPS_loadSetting as loadSetting
 import DMPS_listDelete as listDelete
 import DMPS_tkraise as tkraise
 
-def create_button(master, area, entry, listbox, chk):
+def create_button(master, area, entry, listbox, chk, textbox):
         entry_list     = entry
         settingsArea   = area[0]
         runArea        = area[1]
@@ -30,7 +30,7 @@ def create_button(master, area, entry, listbox, chk):
 
 ################################################# settings #################################################
         Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
-                                command=lambda:admin.admin(entry_list, listbox, chk, mode="hist"))
+                                command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="hist"))
         Button.place(x=205,y=192, height=18)
         Button = tk.Button(settingsArea,text=u'...', bg=background, fg=fontcolor,
                                 command=lambda:loadDataFile.load_dataFile(entry_list[0]))
@@ -47,26 +47,34 @@ def create_button(master, area, entry, listbox, chk):
         deltapositionX = 120
         setpositionY   = 50
         deltapositionY = 40
-#ボタンの位置直しましょう
-        Button = tk.Button(runArea,text=u'RGB', bg=background, fg=fontcolor, command=lambda:admin.admin(entry_list, listbox, chk, mode="rgb"))
+#RGB画像生成
+        Button = tk.Button(runArea,text=u'RGB', bg=background, fg=fontcolor, command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="rgb"))
         Button.place(x=setpositionX + deltapositionX*0, y=setpositionY + deltapositionY*0, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'NDVI', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="ndvi"))
+#NDVI算出
+        Button = tk.Button(runArea,text=u'NDVI', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="ndvi"))
         Button.place(x=setpositionX + deltapositionX*1, y=setpositionY + deltapositionY*0, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'FDI', bg=background, fg=fontcolor, command=lambda:admin.admin(entry_list, listbox, chk, mode="fdi"))
+#FDI算出
+        Button = tk.Button(runArea,text=u'FDI', bg=background, fg=fontcolor, command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="fdi"))
         Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*0, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'NDVI&FDI', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="ndvi&fdi"))
+#NDVI＆FDI算出
+        Button = tk.Button(runArea,text=u'NDVI&FDI', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="ndvi&fdi"))
         Button.place(x=setpositionX + deltapositionX*0, y=setpositionY + deltapositionY*1, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'Save Excel', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="excel"))
+#エクセルに保存
+        Button = tk.Button(runArea,text=u'Save Excel', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="excel"))
         Button.place(x=setpositionX + deltapositionX*1, y=setpositionY + deltapositionY*1, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'Save Settings', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="saveSetting"))
+#設定を保存
+        Button = tk.Button(runArea,text=u'Save Settings', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="saveSetting"))
         Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*1, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'Judge', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="judge"))
+#分類
+        Button = tk.Button(runArea,text=u'Judge', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="judge"))
         Button.place(x=setpositionX + deltapositionX*0, y=setpositionY + deltapositionY*2, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'Load Judge', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="loadJudge"))
+#解析結果読み込み
+        Button = tk.Button(runArea,text=u'Load Judge', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="loadJudge"))
         Button.place(x=setpositionX + deltapositionX*1, y=setpositionY + deltapositionY*2, height=30 , width=110)
-        Button = tk.Button(runArea,text=u'heat map', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, mode="heatmap"))
+#ヒートマップ作成
+        Button = tk.Button(runArea,text=u'heat map', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="heatmap"))
         Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*2, height=30 , width=110)
-
+#終了
         Button = tk.Button(runArea,text=u'Exit', bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
         Button.place(x=470,y=360, height=110 , width=30)
 
@@ -75,9 +83,9 @@ def create_button(master, area, entry, listbox, chk):
                                 command=lambda:listDelete.list_delete(listbox))
         Button.place(x=580,y=300)
         Button = tk.Button(detectionArea,text=u'load', width=5,
-                                command=lambda:admin.admin(entry_list, listbox, chk, mode="reload"))
+                                command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="reload"))
         Button.place(x=635,y=300)
         Button = tk.Button(detectionArea,text=u'point load', width=13,
-                                command=lambda:admin.admin(entry_list, listbox, chk, mode="pointload"))
+                                command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="pointload"))
         Button.place(x=580,y=355)
 

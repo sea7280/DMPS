@@ -3,9 +3,12 @@ sys.dont_write_bytecode = True
 
 import numpy as np
 from osgeo import gdal
-
+import tkinter as tk
 
 def calc_fdi(filepath,setting_detail):
+    log = setting_detail[17]
+    log.insert(tk.END,"Start calculation NDVI.\n")
+    log.see("end")
 
     nirpath     = filepath[9]
     R_RE2path   = filepath[10]
@@ -15,7 +18,7 @@ def calc_fdi(filepath,setting_detail):
     minX      = setting_detail[4]
     minY      = setting_detail[5]
     deltaX    = setting_detail[6]
-    deltaY    = setting_detail[6]
+    deltaY    = setting_detail[7]
 
     #gdal.Openで画像を読み込みます
     cut_NIR_img  =gdal.Open(nirpath    )
@@ -71,6 +74,8 @@ def calc_fdi(filepath,setting_detail):
     FDI = NIR_Band_array - R_NIR
     #FDI = NIR_Band_array - R_RE2_Band_array - (R_SWIR1_Band_array - R_RE2_Band_array) * 10*(833 - 655)/(1610 - 655)
 
+    log.insert(tk.END,"Complete.\n")
+    log.see("end")
     return FDI
 
 

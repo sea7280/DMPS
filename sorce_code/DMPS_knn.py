@@ -2,8 +2,7 @@ import pandas as pd
 import os
 import datetime
 import numpy as np
-# 学習用データとテストデータに分けるためのモジュール（正解率を出すため）
-from sklearn.model_selection import train_test_split
+import tkinter as tk
 # k-近傍法（k-NN）
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
@@ -16,9 +15,11 @@ warnings.simplefilter('ignore', UserWarning)
 from imblearn.over_sampling import SMOTE
 
 def knn_judge(ndvi, fdi, setting_detail):
-
+    log = setting_detail[17]
+    
     start_time = datetime.datetime.now()
-    print(start_time)
+    log.insert(tk.END,"Start time : " + str(start_time)+"\n")
+    log.see("end")
 
     excel_path = os.getcwd() + '\\teacherData\\teacherData_ver7.1_微修正版.xlsx'
     excel_file = pd.read_excel(excel_path)
@@ -33,6 +34,8 @@ def knn_judge(ndvi, fdi, setting_detail):
 ############################# over sampling ##################################
     sm = SMOTE(k_neighbors=5) 
     df_X, df_Y = sm.fit_resample(df_X, df_Y)
+    log.insert(tk.END,"Complete over sampling.\n")
+    log.see("end")
 ##############################################################################
 
     #X_train, X_test, y_train, y_test = train_test_split(df_X, df_Y, random_state=0) #ここから学習用データとテスト用データに分ける。random_stateは乱数を固定
@@ -54,9 +57,12 @@ def knn_judge(ndvi, fdi, setting_detail):
         ndvi = data.T[0].reshape(raw, row)
         fdi  = data.T[1].reshape(raw, row)
         data = None
+        log.insert(tk.END,"Complete standardization.\n")
+        log.see("end")
 
+    log.insert(tk.END,"Start Knn\n")
+    log.see("end")
     model = KNeighborsClassifier(n_neighbors=7) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
-    #model.fit(X_train, y_train) #学習モデル構築。引数に訓練データの特徴量と、それに対応したラベル
     model.fit(df_X, df_Y.values.ravel())
     for count_all in range(len(ndvi)):
         result_data_row = []
@@ -77,5 +83,6 @@ def knn_judge(ndvi, fdi, setting_detail):
         pickle.dump(result_data, f)
 
     end_time = datetime.datetime.now()
-    print("Judge End time : ",end_time)
+    log.insert(tk.END,"End time : " + str(end_time)+"\n")
+    log.see("end")
     return result_data

@@ -9,14 +9,15 @@ import sys
 sys.dont_write_bytecode = True
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
-from tkinter import messagebox
 
 def reloadJudgeRGB(filepath,setting_detail, point_list,mode):
+    log = setting_detail[17]
+
 #サイズの取得
     minX          = setting_detail[4]
     minY          = setting_detail[5]
     deltaX        = setting_detail[6]
-    deltaY        = setting_detail[6]
+    deltaY        = setting_detail[7]
     path = filepath[0]
     getSize_path=os.path.dirname(__file__) + "/tif_file/getSize_8bit.tif"
     gdal.Translate(getSize_path,path,outputType=gdal.GDT_Byte, srcWin=[minX,minY,deltaX,deltaY])
@@ -34,9 +35,11 @@ def reloadJudgeRGB(filepath,setting_detail, point_list,mode):
         index = point_list.curselection()
     
         if not index:
-            messagebox.showerror('Error', 'Please select')
+            log.insert(tk.END,"Please select a point.\n")
+            log.see("end")
         elif len(index) > 1:
-            messagebox.showerror('Error', 'Please select only one')
+            log.insert(tk.END,"Please select only one.\n")
+            log.see("end")
         else:
             point = point_list.get(index)
             delete = ["Point: ", " ", "[", "]"]
@@ -148,7 +151,7 @@ def reloadJudgeRGB(filepath,setting_detail, point_list,mode):
 
         image1 = mpimg.imread(out_True_path)
         plt.imshow(image1)
-        plt.title("TrueColor(Detect from judge data)")
+        plt.title(setting_detail[13])
 
 
         plt.show()

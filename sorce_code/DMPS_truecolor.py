@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import tkinter as tk
 from osgeo import gdal
 import matplotlib.image as mpimg
 import os
@@ -8,6 +9,10 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 def truecolor(filepath,setting_detail):
+    log = setting_detail[17]
+    log.insert(tk.END,"Start RGB image generation.\n")
+    log.see("end")
+    
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
@@ -21,7 +26,7 @@ def truecolor(filepath,setting_detail):
     minX          = setting_detail[4]
     minY          = setting_detail[5]
     deltaX        = setting_detail[6]
-    deltaY        = setting_detail[6]
+    deltaY        = setting_detail[7]
     max_luminance = setting_detail[2]
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
@@ -62,12 +67,14 @@ def truecolor(filepath,setting_detail):
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
 
+    log.insert(tk.END,"Complete.\n")
+    log.see("end")
     #---------------------------------------- 出力 -----------------------------------------
 
     plt.figure(figsize=(7,5))
 
     image1 = mpimg.imread(out_True_path)
     plt.imshow(image1)
-    plt.title(setting_detail[12])
+    plt.title(setting_detail[13])
 
     plt.show()

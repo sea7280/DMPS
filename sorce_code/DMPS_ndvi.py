@@ -1,11 +1,14 @@
 
 from osgeo import gdal
-from tkinter import messagebox
+import tkinter as tk
 import os
 import sys
 sys.dont_write_bytecode = True
 
 def calc_ndvi(filepath,setting_detail):
+    log = setting_detail[17]
+    log.insert(tk.END,"Start calculation NDVI.\n")
+    log.see("end")
 #--------------------------------------------- path ---------------------------------------------------------
 
     redpath = filepath[2]
@@ -16,7 +19,7 @@ def calc_ndvi(filepath,setting_detail):
     minX      = setting_detail[4]
     minY      = setting_detail[5]
     deltaX    = setting_detail[6]
-    deltaY    = setting_detail[6]
+    deltaY    = setting_detail[7]
 
 #--------------------------------------------- tif ---------------------------------------------------------
 
@@ -38,5 +41,7 @@ def calc_ndvi(filepath,setting_detail):
 
     ndvi = (NIR_Band_array - RedBand_array)/(NIR_Band_array + RedBand_array)
 
-
+    log.insert(tk.END,"Complete.\n")
+    log.see("end")
+    
     return ndvi

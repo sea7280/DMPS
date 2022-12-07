@@ -2,14 +2,18 @@ import matplotlib.pyplot as plt
 from osgeo import gdal
 import sys
 sys.dont_write_bytecode = True
+import tkinter as tk
 
 def luminance(filepath,setting_detail):
+    log = setting_detail[17]
+    log.insert(tk.END,"Start creating a histogram of luminance.\n")
+    log.see("end")
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
     nirpath   = filepath[3]
     range_max = setting_detail[3]
-    title     = setting_detail[12]
+    title     = setting_detail[13]
 
     band_image1=gdal.Open(bluepath)
     band_image2=gdal.Open(greenpath)

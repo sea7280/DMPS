@@ -8,6 +8,8 @@ import DMPS_entry as entry
 import DMPS_listbox as listbox
 import DMPS_checkbutton as chk
 import DMPS_frame as frame
+import DMPS_textbox as textbox
+
 class Application(tk.Frame):
     def __init__(self,master=None):
         super().__init__(master)
@@ -21,7 +23,8 @@ class Application(tk.Frame):
         self.entry_list = entry.create_entry(self.frameList)
         self.listbox = listbox.create_listbox(self.frameList)
         self.chk = chk.create_checkbutton(self.frameList)
-        button.create_button(master, self.frameList, self.entry_list, self.listbox, self.chk)
+        self.textbox = textbox.create_textbox(self.frameList)
+        button.create_button(master, self.frameList, self.entry_list, self.listbox, self.chk, self.textbox)
 
 
 

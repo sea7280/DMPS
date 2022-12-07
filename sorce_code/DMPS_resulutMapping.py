@@ -1,4 +1,4 @@
-
+import tkinter as tk
 from osgeo import gdal
 import numpy as np
 import os
@@ -7,6 +7,10 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 def resultMapping(filepath,setting_detail, load):
+    log = setting_detail[17]
+    log.insert(tk.END,"Start Start creating a heatmap.\n")
+    log.see("end")
+
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
@@ -25,7 +29,7 @@ def resultMapping(filepath,setting_detail, load):
     minX          = setting_detail[4]
     minY          = setting_detail[5]
     deltaX        = setting_detail[6]
-    deltaY        = setting_detail[6]
+    deltaY        = setting_detail[7]
     max_luminance = setting_detail[2]
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
@@ -69,6 +73,8 @@ def resultMapping(filepath,setting_detail, load):
             countX.append(count)
         plasticCount.append(countX)
 
+    log.insert(tk.END,"Complete.\n")
+    log.see("end")
 #描画
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(1, 1, 1)
@@ -84,17 +90,3 @@ def resultMapping(filepath,setting_detail, load):
 
     plt.title(setting_detail[12])
     plt.show()
-
-
-
-
-"""
-# ヒートマップを出力
-    sns.heatmap(data=plasticCount,
-                vmin=0,
-                vmax=100,
-                )
-    # グラフ可視化
-    plt.tight_layout()
-    plt.show()
-"""

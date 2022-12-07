@@ -14,7 +14,7 @@ def knnSaveExcel(string):
     ws.title = "判定結果"
     write_excel(judegedata,wb["判定結果"])
     wb.save(os.getcwd() + f"/judge/判定結果_{string}.xlsx")
-    #end_time = datetime.datetime.now()
+
 
 
 def write_excel(band,sheet):

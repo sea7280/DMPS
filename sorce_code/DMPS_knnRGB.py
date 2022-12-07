@@ -10,6 +10,10 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 def knnRGB(filepath,setting_detail, point_list, load):
+    log = setting_detail[17]
+    log.insert(tk.END,"Generate RGB images from analysis results.\n")
+    log.see("end")
+
     bluepath  = filepath[0]
     greenpath = filepath[1]
     redpath   = filepath[2]
@@ -29,7 +33,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
     minX          = setting_detail[4]
     minY          = setting_detail[5]
     deltaX        = setting_detail[6]
-    deltaY        = setting_detail[6]
+    deltaY        = setting_detail[7]
     max_luminance = setting_detail[2]
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
@@ -52,6 +56,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
     size_y = len(judegedata)
     size_x = len(judegedata[0])
     point_list.delete(0, 'end')
+    count = 0
     for y in range(size_y):
         for x in range(size_x):
             if judegedata[y][x] == "plastic":
@@ -60,7 +65,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
                 BlueBand_array[y][x] = 0
                 coordinate = [x,y]
                 point_list.insert(tk.END, "Point: " + str(coordinate) )
-                
+                count = count + 1
             elif judegedata[y][x] == "ship":
                 RedBand_array[y][x] = 0
                 GreenBand_array[y][x] = 0
@@ -72,6 +77,8 @@ def knnRGB(filepath,setting_detail, point_list, load):
             elif judegedata[y][x] == "pumice":
                 pass
 
+    log.insert(tk.END,"plastic pixel : " + str(count) + ".\n")
+    log.see("end")
 
     #出力ファイルの設定のために、入力ファイルのX方向のピクセル数、Y方向のピクセル数を読み出す
     Xsize=b2_image.RasterXSize #band2の画像のX方向ピクセル数
@@ -99,7 +106,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
 
     image1 = mpimg.imread(out_True_path)
     plt.imshow(image1)
-    plt.title(setting_detail[12])
+    plt.title(setting_detail[13])
 
 
 

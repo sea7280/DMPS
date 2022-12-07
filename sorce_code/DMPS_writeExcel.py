@@ -1,10 +1,10 @@
 import openpyxl
-from tkinter import messagebox
 import os
 from osgeo import gdal
 import numpy as np
 import sys
 sys.dont_write_bytecode = True
+import tkinter as tk
 
 def saveExcel(filepath, setting_detail, ndviData, fdiData):
     def write_excel(band,sheet):
@@ -15,11 +15,15 @@ def saveExcel(filepath, setting_detail, ndviData, fdiData):
             for j in range(size_x):
                 ws.cell(row=i + 1,column=j + 1).value = band[i][j]
 
+    log = setting_detail[17]
+    log.insert(tk.END,"Start calculation NDVI.\n")
+    log.see("end")
+
     minX      = setting_detail[4]
     minY      = setting_detail[5]
     deltaX    = setting_detail[6]
-    deltaY    = setting_detail[6]
-    string    = setting_detail[11]
+    deltaY    = setting_detail[7]
+    string    = setting_detail[12]
 
     bluepath        = filepath[0]
     greenpath       = filepath[1]
@@ -31,8 +35,8 @@ def saveExcel(filepath, setting_detail, ndviData, fdiData):
     nirpath_aco     = filepath[9]
     R_RE2path_aco   = filepath[10]
     R_SWIR1path_aco = filepath[11]
-    ndvi                  = ndviData
-    FDI                   = fdiData
+    ndvi            = ndviData
+    FDI             = fdiData
 
 
     band2_8bit_path =os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"
@@ -144,4 +148,6 @@ def saveExcel(filepath, setting_detail, ndviData, fdiData):
     write_excel(FDI                   ,wb["FDI"])
 
     wb.save(os.getcwd() + f"/excel/excel_{string}.xlsx")
-    messagebox.showinfo('Complete', 'Write to Excel completed')
+    log.insert(tk.END,f"Save file name : {string}.xlsx\n")
+    log.insert(tk.END,"Write to Excel completed.\n")
+    log.see("end")
