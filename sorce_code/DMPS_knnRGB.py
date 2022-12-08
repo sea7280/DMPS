@@ -111,5 +111,6 @@ def knnRGB(filepath,setting_detail, point_list, load):
 
 
     plt.show()
+    plt.close()
 
 

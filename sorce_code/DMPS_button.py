@@ -1,6 +1,7 @@
 import tkinter as tk
 import sys
 sys.dont_write_bytecode = True
+import threading
 
 import DMPS_exit as exit
 import DMPS_admin as admin
@@ -27,6 +28,9 @@ def create_button(master, area, entry, listbox, chk, textbox):
         Button = tk.Button(master,text=u'detection', width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(detectionArea))
         Button.place(x=141,y=3, height=20)
+#終了
+        Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
+        Button.place(x=209,y=3, height=20)
 
 ################################################# settings #################################################
         Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
@@ -42,11 +46,19 @@ def create_button(master, area, entry, listbox, chk, textbox):
                                 command=lambda:loadSetting.read_setting_file(entry_list))
         Button.place(x=340,y=73, height=18)
 
+
 ################################################# run #################################################
         setpositionX   = 35
         deltapositionX = 120
         setpositionY   = 50
         deltapositionY = 40
+        
+        #def rgb():
+        #        admin.admin(entry_list, listbox, chk, textbox, mode="rgb")
+        #def callback():
+        #        test = threading.Thread(target=rgb, daemon=True)
+        #        test.start()
+
 #RGB画像生成
         Button = tk.Button(runArea,text=u'RGB', bg=background, fg=fontcolor, command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="rgb"))
         Button.place(x=setpositionX + deltapositionX*0, y=setpositionY + deltapositionY*0, height=30 , width=110)
@@ -74,9 +86,7 @@ def create_button(master, area, entry, listbox, chk, textbox):
 #ヒートマップ作成
         Button = tk.Button(runArea,text=u'heat map', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="heatmap"))
         Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*2, height=30 , width=110)
-#終了
-        Button = tk.Button(runArea,text=u'Exit', bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
-        Button.place(x=470,y=360, height=110 , width=30)
+
 
 ################################################# detection #################################################
         Button = tk.Button(detectionArea,text=u'del', width=5,

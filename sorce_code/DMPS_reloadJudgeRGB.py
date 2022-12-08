@@ -155,5 +155,6 @@ def reloadJudgeRGB(filepath,setting_detail, point_list,mode):
 
 
         plt.show()
+        plt.close()
 
 

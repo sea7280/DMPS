@@ -5,7 +5,8 @@ luminance:3000
 hist luminance:10000
 px:5860
 py:7850
-delta:50
+deltaX:50
+deltaY:50
 NDVI range:-1.0~1.0
 FDI range:0.0~0.1
 file name:PLP2022

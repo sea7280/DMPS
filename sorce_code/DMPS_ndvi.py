@@ -41,7 +41,7 @@ def calc_ndvi(filepath,setting_detail):
 
     ndvi = (NIR_Band_array - RedBand_array)/(NIR_Band_array + RedBand_array)
 
-    log.insert(tk.END,"Complete.\n")
+    log.insert(tk.END,"Complete calculation NDVI.\n")
     log.see("end")
     
     return ndvi

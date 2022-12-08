@@ -90,3 +90,4 @@ def resultMapping(filepath,setting_detail, load):
 
     plt.title(setting_detail[12])
     plt.show()
+    plt.close()

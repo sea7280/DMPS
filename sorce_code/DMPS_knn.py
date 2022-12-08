@@ -40,9 +40,9 @@ def knn_judge(ndvi, fdi, setting_detail):
 
     #X_train, X_test, y_train, y_test = train_test_split(df_X, df_Y, random_state=0) #ここから学習用データとテスト用データに分ける。random_stateは乱数を固定
     result_data = []
-    if setting_detail[13].get() == False:
+    if setting_detail[13] == False:
         pass
-    elif setting_detail[13].get() == True:
+    elif setting_detail[13] == True:
         #標準化
         sc = StandardScaler()
         sc.fit(df_X)

@@ -18,6 +18,7 @@ import DMPS_loadJudgeLog as JudgeLog
 import DMPS_resulutMapping as resulutMapping
 
 
+
 def admin(entry, listbox, chk, textbox, mode):
 
 #entryの入力値を配列に格納
@@ -29,14 +30,14 @@ def admin(entry, listbox, chk, textbox, mode):
     minY           = int(entry[5].get())    #5
     deltaX         = int(entry[6].get())    #6
     deltaY         = int(entry[7].get())    #7
-    ndvi_min       = float(entry[7].get())  #8
-    ndvi_max       = float(entry[8].get())  #9
-    fdi_min        = float(entry[9].get())  #10
-    fdi_max        = float(entry[10].get()) #11
-    saveFileName   = entry[11].get()        #12
-    title          = entry[12].get()        #13
-    load_px        = int(entry[13].get())   #14
-    load_py        = int(entry[14].get())   #15
+    ndvi_min       = float(entry[8].get())  #8
+    ndvi_max       = float(entry[9].get())  #9
+    fdi_min        = float(entry[10].get())  #10
+    fdi_max        = float(entry[11].get()) #11
+    saveFileName   = entry[12].get()        #12
+    title          = entry[13].get()        #13
+    load_px        = int(entry[14].get())   #14
+    load_py        = int(entry[15].get())   #15
     check          = chk                    #16
     #textbox                                #17
 
@@ -86,7 +87,7 @@ def admin(entry, listbox, chk, textbox, mode):
             log = JudgeLog.loadJudgeLog(setting_detail)
             knnRGB.knnRGB(satellite_filepath, setting_detail, listbox, load=log)
         elif mode == "heatmap":
-            log = JudgeLog.loadJudgeLog()
+            log = JudgeLog.loadJudgeLog(setting_detail)
             resulutMapping.resultMapping(satellite_filepath, setting_detail, load=log)
         elif mode == 'hist':
             hist.luminance(satellite_filepath, setting_detail)

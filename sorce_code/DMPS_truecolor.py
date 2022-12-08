@@ -1,3 +1,4 @@
+
 import matplotlib.pyplot as plt
 import tkinter as tk
 from osgeo import gdal
@@ -7,6 +8,8 @@ import sys
 sys.dont_write_bytecode = True
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
+
+
 
 def truecolor(filepath,setting_detail):
     log = setting_detail[17]
@@ -67,14 +70,15 @@ def truecolor(filepath,setting_detail):
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
 
-    log.insert(tk.END,"Complete.\n")
+    log.insert(tk.END,"Complete RGB image generation.\n")
     log.see("end")
     #---------------------------------------- 出力 -----------------------------------------
 
-    plt.figure(figsize=(7,5))
+    t = plt.figure(figsize=(7,5))
 
     image1 = mpimg.imread(out_True_path)
     plt.imshow(image1)
     plt.title(setting_detail[13])
 
     plt.show()
+    plt.close()

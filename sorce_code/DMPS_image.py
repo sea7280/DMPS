@@ -16,6 +16,7 @@ def image_create(data,min,max,title):
         plt.colorbar()
 
         plt.show()
+        plt.close()
 
 def image_create_double(dataA,dataB,minA,maxA,minB,maxB):
 
@@ -31,4 +32,5 @@ def image_create_double(dataA,dataB,minA,maxA,minB,maxB):
         plt.colorbar()
 
         plt.show()
+        plt.close()
 

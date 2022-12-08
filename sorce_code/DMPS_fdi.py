@@ -7,7 +7,7 @@ import tkinter as tk
 
 def calc_fdi(filepath,setting_detail):
     log = setting_detail[17]
-    log.insert(tk.END,"Start calculation NDVI.\n")
+    log.insert(tk.END,"Start calculation FDI.\n")
     log.see("end")
 
     nirpath     = filepath[9]
@@ -74,7 +74,7 @@ def calc_fdi(filepath,setting_detail):
     FDI = NIR_Band_array - R_NIR
     #FDI = NIR_Band_array - R_RE2_Band_array - (R_SWIR1_Band_array - R_RE2_Band_array) * 10*(833 - 655)/(1610 - 655)
 
-    log.insert(tk.END,"Complete.\n")
+    log.insert(tk.END,"Complete calculation FDI.\n")
     log.see("end")
     return FDI
 

@@ -1,6 +1,7 @@
 import tkinter as tk
 import sys
 sys.dont_write_bytecode = True
+import threading
 
 import DMPS_button as button
 import DMPS_label as label
@@ -26,12 +27,21 @@ class Application(tk.Frame):
         self.textbox = textbox.create_textbox(self.frameList)
         button.create_button(master, self.frameList, self.entry_list, self.listbox, self.chk, self.textbox)
 
-
+                
+#def close():
+#    win.destroy()
+        
 
 def main():
     win = tk.Tk()
+    #win.protocol("WM_DELETE_WINDOW", close)
     app = Application(master=win)
     app.mainloop()
 
+
+
+        
 if __name__ == "__main__":
+    #window = threading.Thread(target=main(), daemon=True)
+    #window.start()
     main()

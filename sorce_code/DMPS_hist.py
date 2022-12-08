@@ -36,5 +36,6 @@ def luminance(filepath,setting_detail):
     plt.legend()
     plt.title(title)
     plt.show()
+    plt.close()
 
 
