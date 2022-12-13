@@ -6,7 +6,7 @@ import pickle
 import matplotlib.pyplot as plt
 from PIL import Image
 
-def resultMapping(filepath,setting_detail, load):
+def resultMapping(filepath,setting_detail, load, figure):
     log = setting_detail[17]
     log.insert(tk.END,"Start Start creating a heatmap.\n")
     log.see("end")
@@ -65,27 +65,40 @@ def resultMapping(filepath,setting_detail, load):
 
 #プラスチックカウント
     plasticCount = []
-    for y in range(0,len(judegedata),50):
+    for y in range(0,len(judegedata),100):
         countX = []
-        for x in range(0,len(judegedata[0]),50):
-            data = judegedata[y:y+50,x:x+50]
+        for x in range(0,len(judegedata[0]),100):
+            data = judegedata[y:y+100,x:x+100]
             count = np.count_nonzero(data == "plastic")
             countX.append(count)
         plasticCount.append(countX)
 
+    plasticCount = np.array(plasticCount)
     log.insert(tk.END,"Complete.\n")
     log.see("end")
 #描画
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(1, 1, 1)
 #ヒートマップ作成
-    im = plt.imshow(plasticCount, vmin=0, vmax=600,cmap='gist_stern', interpolation='nearest')
+    #im = plt.imshow(plasticCount, vmin=0, vmax=600,cmap='gist_stern', interpolation='nearest')
+    im = plt.imshow(plasticCount, vmin=0, vmax=10000,cmap='bwr', 
+                    aspect='equal', interpolation='nearest')
     fig.colorbar(im, ax=ax)
+    
+    if figure == True:
+    # Loop over data dimensions and create text annotations.
+        for i in range(len(plasticCount)):
+            for j in range(len(plasticCount[0])):
+                text = ax.text(j, i, plasticCount[i, j], size ='small',
+                       ha="center", va="center", color="w")
+    elif figure == False:
+        pass
+        
 #画像描画
     image = Image.open(out_True_path)
     xlim = ax.get_xlim()
     ylim = ax.get_ylim()
-    ax.imshow(image, extent=[*xlim, *ylim], aspect='auto', alpha=0.7)
+    ax.imshow(image, extent=[*xlim, *ylim], aspect='equal', alpha=0.7)
 
 
     plt.title(setting_detail[12])

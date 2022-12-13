@@ -88,7 +88,10 @@ def admin(entry, listbox, chk, textbox, mode):
             knnRGB.knnRGB(satellite_filepath, setting_detail, listbox, load=log)
         elif mode == "heatmap":
             log = JudgeLog.loadJudgeLog(setting_detail)
-            resulutMapping.resultMapping(satellite_filepath, setting_detail, load=log)
+            resulutMapping.resultMapping(satellite_filepath, setting_detail, load=log, figure=False)
+        elif mode == "heatfigure":
+            log = JudgeLog.loadJudgeLog(setting_detail)
+            resulutMapping.resultMapping(satellite_filepath, setting_detail, load=log, figure=True)
         elif mode == 'hist':
             hist.luminance(satellite_filepath, setting_detail)
         elif mode == "reload":

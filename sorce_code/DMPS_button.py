@@ -45,7 +45,9 @@ def create_button(master, area, entry, listbox, chk, textbox):
         Button = tk.Button(settingsArea,text=u'Load', width=5, bg=background, fg=fontcolor,
                                 command=lambda:loadSetting.read_setting_file(entry_list))
         Button.place(x=340,y=73, height=18)
-
+#設定を保存
+        Button = tk.Button(settingsArea,text=u'Save Settings', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="saveSetting"))
+        Button.place(x=310, y=390, height=30 , width=90)
 
 ################################################# run #################################################
         setpositionX   = 35
@@ -74,17 +76,17 @@ def create_button(master, area, entry, listbox, chk, textbox):
 #エクセルに保存
         Button = tk.Button(runArea,text=u'Save Excel', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="excel"))
         Button.place(x=setpositionX + deltapositionX*1, y=setpositionY + deltapositionY*1, height=30 , width=110)
-#設定を保存
-        Button = tk.Button(runArea,text=u'Save Settings', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="saveSetting"))
-        Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*1, height=30 , width=110)
 #分類
         Button = tk.Button(runArea,text=u'Judge', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="judge"))
-        Button.place(x=setpositionX + deltapositionX*0, y=setpositionY + deltapositionY*2, height=30 , width=110)
+        Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*1, height=30 , width=110)
 #解析結果読み込み
         Button = tk.Button(runArea,text=u'Load Judge', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="loadJudge"))
-        Button.place(x=setpositionX + deltapositionX*1, y=setpositionY + deltapositionY*2, height=30 , width=110)
+        Button.place(x=setpositionX + deltapositionX*0, y=setpositionY + deltapositionY*2, height=30 , width=110)
 #ヒートマップ作成
         Button = tk.Button(runArea,text=u'heat map', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="heatmap"))
+        Button.place(x=setpositionX + deltapositionX*1, y=setpositionY + deltapositionY*2, height=30 , width=110)
+#ヒートマップ作成(数字付き)
+        Button = tk.Button(runArea,text=u'heat figure', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="heatfigure"))
         Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*2, height=30 , width=110)
 
 

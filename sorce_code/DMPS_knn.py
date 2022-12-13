@@ -21,7 +21,7 @@ def knn_judge(ndvi, fdi, setting_detail):
     log.insert(tk.END,"Start time : " + str(start_time)+"\n")
     log.see("end")
 
-    excel_path = os.getcwd() + '\\teacherData\\teacherData_ver7.1_微修正版.xlsx'
+    excel_path = os.getcwd() + '\\teacherData\\教師データまとめ_ver7.1.2.xlsx'
     excel_file = pd.read_excel(excel_path)
 
     df_X = excel_file.copy()                    # データをコピーする。
@@ -69,6 +69,7 @@ def knn_judge(ndvi, fdi, setting_detail):
         for count in range(len(ndvi[count_all])):
             target = [[ndvi[count_all][count],fdi[count_all][count]]]
             target = pd.DataFrame(target,columns = ['NDVI','FDI'])
+            target = target.fillna(0)
             # 構築したモデルから検出物を判定
             judge_data = model.predict(target)
             result_data_row.append(judge_data[0])
@@ -78,7 +79,7 @@ def knn_judge(ndvi, fdi, setting_detail):
     with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 #log用
-    string = setting_detail[11]
+    string = setting_detail[12]
     with open(os.getcwd() + f"/pickle_log/{string}_" + start_time.strftime('%Y年%m月%d日%H時%M分%S秒') + ".pickle", mode='wb') as f:
         pickle.dump(result_data, f)
 
