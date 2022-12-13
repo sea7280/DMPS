@@ -63,12 +63,16 @@ def resultMapping(filepath,setting_detail, load, figure):
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
 
+    if figure == True:
+        delta = 300
+    elif figure == False:
+        delta = 100
 #プラスチックカウント
     plasticCount = []
-    for y in range(0,len(judegedata),100):
+    for y in range(0,len(judegedata),delta):
         countX = []
-        for x in range(0,len(judegedata[0]),100):
-            data = judegedata[y:y+100,x:x+100]
+        for x in range(0,len(judegedata[0]),delta):
+            data = judegedata[y:y+delta,x:x+delta]
             count = np.count_nonzero(data == "plastic")
             countX.append(count)
         plasticCount.append(countX)
