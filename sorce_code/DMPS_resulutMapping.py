@@ -65,8 +65,10 @@ def resultMapping(filepath,setting_detail, load, figure):
 
     if figure == True:
         delta = 300
+        max = 90000
     elif figure == False:
         delta = 100
+        max = 10000
 #プラスチックカウント
     plasticCount = []
     for y in range(0,len(judegedata),delta):
@@ -85,7 +87,7 @@ def resultMapping(filepath,setting_detail, load, figure):
     ax = fig.add_subplot(1, 1, 1)
 #ヒートマップ作成
     #im = plt.imshow(plasticCount, vmin=0, vmax=600,cmap='gist_stern', interpolation='nearest')
-    im = plt.imshow(plasticCount, vmin=0, vmax=10000,cmap='bwr', 
+    im = plt.imshow(plasticCount, vmin=0, vmax=max,cmap='bwr', 
                     aspect='equal', interpolation='nearest')
     fig.colorbar(im, ax=ax)
     
