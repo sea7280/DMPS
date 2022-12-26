@@ -132,7 +132,7 @@ if __name__ == "__main__":
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(1, 1, 1)
 #ヒートマップ作成
-    im = plt.imshow(mean_percent, vmin=0, vmax=1,cmap='bwr', 
+    im = plt.imshow(mean_percent, vmin=0, vmax=2,cmap='bwr', 
                     aspect='equal', interpolation='nearest')
     fig.colorbar(im, ax=ax)
 
