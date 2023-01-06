@@ -65,10 +65,16 @@ def hoge_logic(_path, _base_name):
 if __name__ == "__main__":
     # 複数ファイル選択処理の場合------
     filenames = files_select()
-    
-    bluepath  = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B02.jp2"
-    greenpath = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B03.jp2"
-    redpath   = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B04.jp2"
+
+#windows用
+#    bluepath  = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B02.jp2"
+#    greenpath = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B03.jp2"
+#    redpath   = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B04.jp2"
+
+#mac用
+    bluepath  = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B02.jp2"
+    greenpath = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B03.jp2"
+    redpath   = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_osakawann_20210222_west/GRANULE/L1C_T53SMU_A029615_20210222T015613/IMG_DATA/T53SMU_20210222T014701_B04.jp2"
 
     band2_8bit_path=os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"
     band3_8bit_path=os.path.dirname(__file__) + "/tif_file/Band3_8bit.tif"
