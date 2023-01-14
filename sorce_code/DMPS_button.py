@@ -15,22 +15,20 @@ def create_button(master, area, entry, listbox, chk, textbox):
         settingsArea   = area[0]
         runArea        = area[1]
         detectionArea  = area[2]
+        mainArea       = area[3]
         background     = "black"
         fontcolor      = "green2"
 
 ################################################# change frame #################################################
-        Button = tk.Button(master,text=u'Settings' , width=8, bg=background, fg=fontcolor,
-                                command=lambda:tkraise.change_frame(settingsArea))
+        Button = tk.Button(master,text=u'main' , width=8, bg=background, fg=fontcolor,
+                                command=lambda:tkraise.change_frame(mainArea))
         Button.place(x=5,y=3, height=20)
-        Button = tk.Button(master,text=u'Run'      , width=8, bg=background, fg=fontcolor,
-                                command=lambda:tkraise.change_frame(runArea))
-        Button.place(x=73,y=3, height=20)
         Button = tk.Button(master,text=u'detection', width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(detectionArea))
-        Button.place(x=141,y=3, height=20)
+        Button.place(x=73,y=3, height=20)
 #終了
         Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
-        Button.place(x=209,y=3, height=20)
+        Button.place(x=141,y=3, height=20)
 
 ################################################# settings #################################################
         Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
@@ -91,13 +89,13 @@ def create_button(master, area, entry, listbox, chk, textbox):
 
 
 ################################################# detection #################################################
-        Button = tk.Button(detectionArea,text=u'del', width=5,
+        Button = tk.Button(detectionArea,text=u'del', width=5, bg=background, fg=fontcolor,
                                 command=lambda:listDelete.list_delete(listbox))
-        Button.place(x=580,y=300)
-        Button = tk.Button(detectionArea,text=u'load', width=5,
+        Button.place(x=50,y=300)
+        Button = tk.Button(detectionArea,text=u'load', width=5, bg=background, fg=fontcolor,
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="reload"))
-        Button.place(x=635,y=300)
-        Button = tk.Button(detectionArea,text=u'point load', width=13,
+        Button.place(x=100,y=300)
+        Button = tk.Button(detectionArea,text=u'point load', width=13, bg=background, fg=fontcolor,
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="pointload"))
-        Button.place(x=580,y=355)
+        Button.place(x=50,y=355)
 

@@ -15,7 +15,7 @@ class Application(tk.Frame):
     def __init__(self,master=None):
         super().__init__(master)
 
-        self.master.geometry("430x470")
+        self.master.geometry("860x470")
         self.master.title("DMPS")
         self.master.configure(bg="black")
 

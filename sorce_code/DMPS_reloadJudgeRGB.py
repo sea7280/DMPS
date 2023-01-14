@@ -122,7 +122,7 @@ def reloadJudgeRGB(filepath,setting_detail, point_list,mode):
                 elif judegedata[y][x] == "ship":
                     RedBand_array[y][x] = 0
                     GreenBand_array[y][x] = 0
-                    BlueBand_array[y][x] = 255
+                    BlueBand_array[y][x] = 0
                 elif judegedata[y][x] == "water":
                     pass
                 elif judegedata[y][x] == "wood":

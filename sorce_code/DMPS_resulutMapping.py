@@ -62,24 +62,36 @@ def resultMapping(filepath,setting_detail, load, figure):
     out1.GetRasterBand(2).WriteArray(GreenBand_array) #緑の配列を緑バンドに書き込む
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
-
+    #figureならカウント付きヒートマップ　なしなら普通のヒートマップ
+    #カウント付きは300ピクセル四方でカウント　なしは100ピクセル四方でカウント
+    #ヒートマップの最大値はカウント付きは90000　なしは10000
     if figure == True:
         delta = 300
         max = 90000
     elif figure == False:
-        delta = 100
-        max = 10000
+        delta = 50
+        max = 0.2
 #プラスチックカウント
     plasticCount = []
+    plasticPercent = []
     for y in range(0,len(judegedata),delta):
         countX = []
+        percentX = []
         for x in range(0,len(judegedata[0]),delta):
             data = judegedata[y:y+delta,x:x+delta]
+            #プラスチックの数をカウント
             count = np.count_nonzero(data == "plastic")
+            percent = round((count * 10 / (delta*10)**2) * 100,3)
+            #X方向のカウント結果
             countX.append(count)
+            percentX.append(percent)
+        #x方向のカウント結果をまとめて配列に
         plasticCount.append(countX)
-
+        plasticPercent.append(percentX)
+    #numpy化
     plasticCount = np.array(plasticCount)
+    plasticPercent = np.array(plasticPercent)
+    #ログの出力
     log.insert(tk.END,"Complete.\n")
     log.see("end")
 #描画
@@ -87,15 +99,18 @@ def resultMapping(filepath,setting_detail, load, figure):
     ax = fig.add_subplot(1, 1, 1)
 #ヒートマップ作成
     #im = plt.imshow(plasticCount, vmin=0, vmax=600,cmap='gist_stern', interpolation='nearest')
-    im = plt.imshow(plasticCount, vmin=0, vmax=max,cmap='bwr', 
+#    im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='bwr', 
+#                    aspect='equal', interpolation='nearest')
+    #im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='gist_ncar', 
+    im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='bwr',
                     aspect='equal', interpolation='nearest')
     fig.colorbar(im, ax=ax)
     
     if figure == True:
-    # Loop over data dimensions and create text annotations.
+    #ヒートマップ上に数値を載せる
         for i in range(len(plasticCount)):
             for j in range(len(plasticCount[0])):
-                text = ax.text(j, i, plasticCount[i, j], size ='small',
+                text = ax.text(j, i, plasticPercent[i, j], size ='small',
                        ha="center", va="center", color="w")
     elif figure == False:
         pass

@@ -24,8 +24,8 @@ def create_entry(area):
     entry_fdi_max      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
     entry_savefile     = tk.Entry(settingsArea, width=40, bg=background, fg=fontcolor, font=("", 10))
     entry_plt_title    = tk.Entry(settingsArea, width=25, bg=background, fg=fontcolor, font=("", 10))
-    entry_load_px      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
-    entry_load_py      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
+    entry_load_px      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
+    entry_load_py      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     
     entry_file.place(        x=80,y=setpositionY  + 2)
     entry_acolite_file.place(x=80,y=setpositionY  + 22)
@@ -41,8 +41,8 @@ def create_entry(area):
     entry_fdi_max.place(     x=190,y=setpositionY + 222)
     entry_savefile.place(    x=120,y=setpositionY + 262)
     entry_plt_title.place(   x=120,y=setpositionY + 302)
-    entry_load_px.place(     x=580,y=330)
-    entry_load_py.place(     x=635,y=330)
+    entry_load_px.place(     x=50,y=330)
+    entry_load_py.place(     x=100,y=330)
     
     entry_lumi.insert(0,10000)
     entry_lumi_hist.insert(0,10000)
