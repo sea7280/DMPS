@@ -64,7 +64,7 @@ def resultMapping(filepath,setting_detail, load, figure):
     out1.FlushCache()
 
     if figure == True:
-        delta = 300
+        delta = 100
         max = 90000
     elif figure == False:
         delta = 100
