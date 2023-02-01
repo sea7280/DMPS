@@ -1,15 +1,22 @@
+#entry作成ファイル
+
+#ライブラリの読み込み
 import tkinter as tk
 import sys
 sys.dont_write_bytecode = True
 
+#entry作成関数
 def create_entry(area):
+    #出力先を指定
     settingsArea   = area[0]
-    runArea = area[1]
-    detectionArea  = area[2]
+    #背景色、フォントカラーの指定
     background = "black"
     fontcolor = "white"
+    
+    #出力座標の基準位置
     setpositionY = 90
 
+    #entryの生成
     entry_file         = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8 ))
     entry_acolite_file = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8 ))
     entry_lumi         = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
@@ -26,7 +33,7 @@ def create_entry(area):
     entry_plt_title    = tk.Entry(settingsArea, width=25, bg=background, fg=fontcolor, font=("", 10))
     entry_load_px      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     entry_load_py      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
-    
+    #entry設置
     entry_file.place(        x=80,y=setpositionY  + 2)
     entry_acolite_file.place(x=80,y=setpositionY  + 22)
     entry_lumi.place(        x=150,y=setpositionY + 82)
@@ -44,6 +51,7 @@ def create_entry(area):
     entry_load_px.place(     x=580,y=330)
     entry_load_py.place(     x=635,y=330)
     
+    #enrtyに初期値を設定
     entry_lumi.insert(0,10000)
     entry_lumi_hist.insert(0,10000)
     entry_px.insert(0,0)
@@ -58,6 +66,7 @@ def create_entry(area):
     entry_load_px.insert(0,0)
     entry_load_py.insert(0,0)
 
+    #生成したentryを配列で保持
     entry_list = [entry_file        #0
                 ,entry_acolite_file #1
                 ,entry_lumi         #2
@@ -74,5 +83,5 @@ def create_entry(area):
                 ,entry_plt_title    #13
                 ,entry_load_px      #14
                 ,entry_load_py]     #15
-    
+    #entry_listを返す
     return entry_list

@@ -5,28 +5,30 @@ import os
 import sys
 sys.dont_write_bytecode = True
 
+
+#NDVIの算出
 def calc_ndvi(filepath,setting_detail):
     log = setting_detail[17]
     log.insert(tk.END,"Start calculation NDVI.\n")
     log.see("end")
-#--------------------------------------------- path ---------------------------------------------------------
+#--------------------------------------------- path 
 
     redpath = filepath[2]
     nirpath = filepath[3]
 
-#--------------------------------------------- range ---------------------------------------------------------
+#--------------------------------------------- range
 
     minX      = setting_detail[4]
     minY      = setting_detail[5]
     deltaX    = setting_detail[6]
     deltaY    = setting_detail[7]
 
-#--------------------------------------------- tif ---------------------------------------------------------
+#--------------------------------------------- tif 
 
     band4_8bit_path =os.path.dirname(__file__) + "/tif_file/Band4_8bit.tif"
     band8_8bit_path =os.path.dirname(__file__) + "/tif_file/Band8_8bit.tif"
 
-#---------------------------------------------- 配列変換 -----------------------------------------------------
+#---------------------------------------------- 配列変換 
     gdal.Translate(band4_8bit_path ,redpath ,srcWin=[minX,minY,deltaX,deltaY])
     gdal.Translate(band8_8bit_path ,nirpath ,srcWin=[minX,minY,deltaX,deltaY])
 
@@ -36,6 +38,7 @@ def calc_ndvi(filepath,setting_detail):
     RedBand_array       = b4_image.ReadAsArray()
     NIR_Band_array      = b8_image.ReadAsArray()
 
+#DN→反射率に変換
     RedBand_array      = RedBand_array      / 10000
     NIR_Band_array     = NIR_Band_array     / 10000
 

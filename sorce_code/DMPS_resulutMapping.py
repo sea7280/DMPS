@@ -6,6 +6,7 @@ import pickle
 import matplotlib.pyplot as plt
 from PIL import Image
 
+#ヒートマップの作成
 def resultMapping(filepath,setting_detail, load, figure):
     log = setting_detail[17]
     log.insert(tk.END,"Start Start creating a heatmap.\n")
@@ -63,6 +64,7 @@ def resultMapping(filepath,setting_detail, load, figure):
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
 
+#最大値の設定
     if figure == True:
         delta = 100
         max = 90000
