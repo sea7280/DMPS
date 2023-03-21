@@ -1,3 +1,5 @@
+#機械学習の結果をエクセルに保存
+
 import openpyxl
 import os
 from openpyxl.styles import PatternFill
@@ -15,8 +17,7 @@ def knnSaveExcel(string):
     write_excel(judegedata,wb["判定結果"])
     wb.save(os.getcwd() + f"/judge/判定結果_{string}.xlsx")
 
-
-
+#エクセルファイルへの書き込み
 def write_excel(band,sheet):
     ws = sheet
     size_y = len(band)

@@ -4,6 +4,8 @@ import tkinter as tk
 import tkinter.filedialog
 import os
 
+
+#設定の読み込み
 def read_setting_file(entry):
     def insert_entry(ent,value):
         ent.delete(0, tk.END)

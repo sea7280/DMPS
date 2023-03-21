@@ -10,7 +10,7 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 
-
+#RGB画像の生成
 def truecolor(filepath,setting_detail):
     log = setting_detail[17]
     log.insert(tk.END,"Start RGB image generation.\n")

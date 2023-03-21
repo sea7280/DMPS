@@ -2,7 +2,7 @@ import tkinter as tk
 import sys
 sys.dont_write_bytecode = True
 
-
+#リストボックスの生成
 def create_listbox(area):
     background     = "black"
     fontcolor      = "green2"

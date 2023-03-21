@@ -18,12 +18,8 @@ class Application(tk.Frame):
     def __init__(self,master=None):
         super().__init__(master)
 
-<<<<<<< HEAD
-        self.master.geometry("860x470")
-=======
         #メインウィンドウの生成
-        self.master.geometry("430x470")
->>>>>>> 卒論用
+        self.master.geometry("860x470")
         self.master.title("DMPS")
         self.master.configure(bg="black")
         #フレームの生成。返り値をself.frameListで保持

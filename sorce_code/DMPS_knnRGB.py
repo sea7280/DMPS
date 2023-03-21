@@ -1,3 +1,5 @@
+#解析結果のRGB画像出力
+
 import matplotlib.pyplot as plt
 from osgeo import gdal
 import matplotlib.image as mpimg
@@ -8,6 +10,7 @@ import sys
 sys.dont_write_bytecode = True
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
+
 
 def knnRGB(filepath,setting_detail, point_list, load):
     log = setting_detail[17]
@@ -52,7 +55,7 @@ def knnRGB(filepath,setting_detail, point_list, load):
     GreenBand_array = b3_image.ReadAsArray()
     RedBand_array   = b4_image.ReadAsArray()
 
-
+#解析結果ごとに色付け
     size_y = len(judegedata)
     size_x = len(judegedata[0])
     point_list.delete(0, 'end')

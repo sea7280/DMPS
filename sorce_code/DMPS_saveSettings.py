@@ -5,6 +5,7 @@ import sys
 sys.dont_write_bytecode = True
 import tkinter as tk
 
+#設定の保存
 def saveSettings(setting_detail):
     log = setting_detail[17]
 

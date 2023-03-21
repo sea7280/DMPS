@@ -20,7 +20,6 @@ def create_button(master, area, entry, listbox, chk, textbox):
         settingsArea   = area[0]
         runArea        = area[1]
         detectionArea  = area[2]
-<<<<<<< HEAD
         mainArea       = area[3]
         background     = "black"
         fontcolor      = "green2"
@@ -28,7 +27,6 @@ def create_button(master, area, entry, listbox, chk, textbox):
 ################################################# change frame #################################################
         Button = tk.Button(master,text=u'main' , width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(mainArea))
-=======
         #背景、フォントカラーの設定
         #背景は黒、文字を緑にした
         background     = "black"
@@ -37,25 +35,18 @@ def create_button(master, area, entry, listbox, chk, textbox):
 #画面の変更ボタン
         Button = tk.Button(master,text=u'Settings' , width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(settingsArea))
->>>>>>> 卒論用
         Button.place(x=5,y=3, height=20)
         Button = tk.Button(master,text=u'detection', width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(detectionArea))
-<<<<<<< HEAD
         Button.place(x=73,y=3, height=20)
 #終了
         Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
-        Button.place(x=141,y=3, height=20)
-
-################################################# settings #################################################
-=======
         Button.place(x=141,y=3, height=20)
 
 #ソフトウェアの終了ボタン
         Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
         Button.place(x=209,y=3, height=20)
 #ヒストグラムの生成ボタン
->>>>>>> 卒論用
         Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="hist"))
         Button.place(x=205,y=192, height=18)
@@ -110,15 +101,6 @@ def create_button(master, area, entry, listbox, chk, textbox):
 
 
 ################################################# detection #################################################
-<<<<<<< HEAD
-        Button = tk.Button(detectionArea,text=u'del', width=5, bg=background, fg=fontcolor,
-                                command=lambda:listDelete.list_delete(listbox))
-        Button.place(x=50,y=300)
-        Button = tk.Button(detectionArea,text=u'load', width=5, bg=background, fg=fontcolor,
-                                command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="reload"))
-        Button.place(x=100,y=300)
-        Button = tk.Button(detectionArea,text=u'point load', width=13, bg=background, fg=fontcolor,
-=======
 #出力結果リストの選択を削除
         Button = tk.Button(detectionArea,text=u'del', width=5,
                                 command=lambda:listDelete.list_delete(listbox))
@@ -129,7 +111,6 @@ def create_button(master, area, entry, listbox, chk, textbox):
         Button.place(x=635,y=300)
 #指定した座標近辺画像の読み込み
         Button = tk.Button(detectionArea,text=u'point load', width=13,
->>>>>>> 卒論用
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="pointload"))
         Button.place(x=50,y=355)
 

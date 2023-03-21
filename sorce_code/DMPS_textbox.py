@@ -1,6 +1,7 @@
 from tkinter.scrolledtext import ScrolledText
 import tkinter as tk
 
+#テキストボックスの作成
 def create_textbox(area):
     frame = area[1]
     background = "black"

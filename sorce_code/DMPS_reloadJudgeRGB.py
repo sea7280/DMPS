@@ -10,6 +10,8 @@ sys.dont_write_bytecode = True
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
+
+#解析結果の拡大
 def reloadJudgeRGB(filepath,setting_detail, point_list,mode):
     log = setting_detail[17]
 
