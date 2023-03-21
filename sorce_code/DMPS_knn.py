@@ -1,3 +1,6 @@
+#knn実行ファイル
+
+#ライブラリの読み込み
 import pandas as pd
 import os
 import datetime
@@ -14,31 +17,30 @@ warnings.simplefilter('ignore', UserWarning)
 #オーバーサンプリング
 from imblearn.over_sampling import SMOTE
 
+#knn実行関数
 def knn_judge(ndvi, fdi, setting_detail):
+    #ログ出力
     log = setting_detail[17]
-    
     start_time = datetime.datetime.now()
     log.insert(tk.END,"Start time : " + str(start_time)+"\n")
     log.see("end")
-
+    #教師データの読み込み
     excel_path = os.getcwd() + '\\teacherData\\教師データまとめ_ver7.1.2.xlsx'
     excel_file = pd.read_excel(excel_path)
-
-    df_X = excel_file.copy()                    # データをコピーする。
+    #データのコピー
+    df_X = excel_file.copy()
     df_Y = excel_file.copy()
 
-    df_X = df_X.drop('検出物質',axis=1)         #取得したExcelデータから属性データのみを取り出す
+    df_X = df_X.drop('検出物質',axis=1)         #Excelデータから属性データのみを取り出す
     drop_idx = ['NDVI','FDI']#取得したExcelデータから目的変数のみを取り出す
     df_Y = df_Y.drop(drop_idx,axis=1)
-
-############################# over sampling ##################################
+    #オーバーサンプリング処理で教師データの増量
     sm = SMOTE(k_neighbors=5) 
     df_X, df_Y = sm.fit_resample(df_X, df_Y)
+    #ログ出力
     log.insert(tk.END,"Complete over sampling.\n")
     log.see("end")
-##############################################################################
-
-    #X_train, X_test, y_train, y_test = train_test_split(df_X, df_Y, random_state=0) #ここから学習用データとテスト用データに分ける。random_stateは乱数を固定
+    
     result_data = []
     if setting_detail[13] == False:
         pass

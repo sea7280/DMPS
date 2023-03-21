@@ -6,6 +6,7 @@ import sys
 sys.dont_write_bytecode = True
 import tkinter as tk
 
+#NDVI, FDIのエクセル書き込み
 def saveExcel(filepath, setting_detail, ndviData, fdiData):
     def write_excel(band,sheet):
         ws = sheet
