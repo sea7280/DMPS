@@ -34,7 +34,7 @@ def hoge_logic(_path, _base_name):
     #カウント付きは300ピクセル四方でカウント　なしは100ピクセル四方でカウント
     #ヒートマップの最大値はカウント付きは90000　なしは10000
 
-    delta = 300
+    delta = 100
     max = 10000
 #プラスチックカウント
     plasticCount = []
@@ -58,17 +58,23 @@ def hoge_logic(_path, _base_name):
     plasticCount = np.array(plasticCount)
     plasticPercent = np.array(plasticPercent)
 
-    return plasticPercent
+    return plasticCount
 
 
 # main
 if __name__ == "__main__":
     # 複数ファイル選択処理の場合------
     filenames = files_select()
-    
-    bluepath  = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B02.jp2"
-    greenpath = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B03.jp2"
-    redpath   = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B04.jp2"
+
+#windows用
+#    bluepath  = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B02.jp2"
+#    greenpath = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B03.jp2"
+#    redpath   = "C:/Users/KamedaLab/Desktop/SatelliteData/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B04.jp2"
+
+#mac用
+    bluepath  = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B02.jp2"
+    greenpath = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B03.jp2"
+    redpath   = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_osakawann_20210222/GRANULE/L1C_T53SNU_A029615_20210222T015613/IMG_DATA/T53SNU_20210222T014701_B04.jp2"
 
     band2_8bit_path=os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"
     band3_8bit_path=os.path.dirname(__file__) + "/tif_file/Band3_8bit.tif"
@@ -76,9 +82,9 @@ if __name__ == "__main__":
 
     #切り出しの詳細
     minX          = 0
-    minY          = 6000
-    deltaX        = 4000
-    deltaY        = 4000
+    minY          = 5090
+    deltaX        = 5000
+    deltaY        = 5800
     max_luminance = 5000
 
     #各バンドのファイルを、それぞれ、関心領域のみ切り出す。出力は8bitのgeotifとする
@@ -112,8 +118,8 @@ if __name__ == "__main__":
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
 
-    lenX = math.ceil(len(BlueBand_array[0]) / 300)
-    lenY = math.ceil(len(BlueBand_array) / 300)
+    lenX = math.ceil(len(BlueBand_array[0]) / 100)
+    lenY = math.ceil(len(BlueBand_array) / 100)
     
     sum_percent = np.zeros((lenY,lenX))
     # 複数ファイルを1ファイルずつ処理する
@@ -122,24 +128,26 @@ if __name__ == "__main__":
         #dir_name = os.path.dirname(path)  # フォルダ名を取得
 
         # メイン処理関数呼び出し
-        percent = hoge_logic(path, base_name)
+        mean_percent = hoge_logic(path, base_name)
+        #percent = hoge_logic(path, base_name)
 #平均値算出
-        sum_percent = sum_percent + percent
-    mean_percent = np.round(sum_percent / len(filenames),3)
+#        sum_percent = sum_percent + percent
+#    mean_percent = np.round(sum_percent / len(filenames),3)
+
 
 #描画
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(1, 1, 1)
 #ヒートマップ作成
-    im = plt.imshow(mean_percent, vmin=0, vmax=1,cmap='bwr', 
+    im = plt.imshow(mean_percent, vmin=0,cmap='gist_ncar', 
                     aspect='equal', interpolation='nearest')
     fig.colorbar(im, ax=ax)
 
 #    #ヒートマップ上に数値を載せる
-#    for i in range(len(mean_percent)):
-#        for j in range(len(mean_percent[0])):
-#            text = ax.text(j, i, mean_percent[i, j], fontsize=7,
-#                       ha="center", va="center", color="w")
+    for i in range(len(mean_percent)):
+        for j in range(len(mean_percent[0])):
+            text = ax.text(j, i, mean_percent[i, j], fontsize=4,
+                       ha="center", va="center", color="w")
 
 #画像描画
     image = Image.open(out_True_path)

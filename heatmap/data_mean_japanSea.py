@@ -34,7 +34,7 @@ def hoge_logic(_path, _base_name):
     #カウント付きは300ピクセル四方でカウント　なしは100ピクセル四方でカウント
     #ヒートマップの最大値はカウント付きは90000　なしは10000
 
-    delta = 300
+    delta = 1000
     max = 10000
 #プラスチックカウント
     plasticCount = []
@@ -65,10 +65,16 @@ def hoge_logic(_path, _base_name):
 if __name__ == "__main__":
     # 複数ファイル選択処理の場合------
     filenames = files_select()
+
+#windows用
+#    bluepath  = "C:/Users/KamedaLab/Desktop/SatelliteData_japanSea/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B02.jp2"
+#    greenpath = "C:/Users/KamedaLab/Desktop/SatelliteData_japanSea/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B03.jp2"
+#    redpath   = "C:/Users/KamedaLab/Desktop/SatelliteData_japanSea/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B04.jp2"
     
-    bluepath  = "C:/Users/KamedaLab/Desktop/SatelliteData_japanSea/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B02.jp2"
-    greenpath = "C:/Users/KamedaLab/Desktop/SatelliteData_japanSea/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B03.jp2"
-    redpath   = "C:/Users/KamedaLab/Desktop/SatelliteData_japanSea/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B04.jp2"
+#mac用
+    bluepath  = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B02.jp2"
+    greenpath = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B03.jp2"
+    redpath   = "/Users/sakumasouya/Desktop/衛星画像/解析用/S2A_japansea_a_20220908/GRANULE/L1C_T53TLF_A037666_20220908T020239/IMG_DATA/T53TLF_20220908T015701_B04.jp2"
 
     band2_8bit_path=os.path.dirname(__file__) + "/tif_file/Band2_8bit.tif"
     band3_8bit_path=os.path.dirname(__file__) + "/tif_file/Band3_8bit.tif"
@@ -112,8 +118,8 @@ if __name__ == "__main__":
     out1.GetRasterBand(3).WriteArray(BlueBand_array)  #青の配列を青バンドに書き込む
     out1.FlushCache()
 
-    lenX = math.ceil(len(BlueBand_array[0]) / 300)
-    lenY = math.ceil(len(BlueBand_array) / 300)
+    lenX = math.ceil(len(BlueBand_array[0]) / 1000)
+    lenY = math.ceil(len(BlueBand_array) / 1000)
     
     sum_percent = np.zeros((lenY,lenX))
     # 複数ファイルを1ファイルずつ処理する
