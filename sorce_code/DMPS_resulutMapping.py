@@ -68,6 +68,7 @@ def resultMapping(filepath,setting_detail, load, figure):
     #カウント付きは300ピクセル四方でカウント　なしは100ピクセル四方でカウント
     #ヒートマップの最大値はカウント付きは90000　なしは10000
 
+
 #最大値の設定
     if figure == True:
         delta = 100
