@@ -25,6 +25,8 @@ def knn_judge(ndvi, fdi, setting_detail):
     log.insert(tk.END,"Start time : " + str(start_time)+"\n")
     log.see("end")
     #教師データの読み込み
+    
+    
     excel_path = os.getcwd() + '\\teacherData\\教師データまとめ_ver7.1.2.xlsx'
     excel_file = pd.read_excel(excel_path)
     #データのコピー
@@ -64,7 +66,7 @@ def knn_judge(ndvi, fdi, setting_detail):
 
     log.insert(tk.END,"Start Knn\n")
     log.see("end")
-    model = KNeighborsClassifier(n_neighbors=7) #k-NNインスタンス。今回は3個で多数決。3の値を変更して色々試すと〇
+    model = KNeighborsClassifier(n_neighbors=7) #k-NNインスタンス
     model.fit(df_X, df_Y.values.ravel())
     for count_all in range(len(ndvi)):
         result_data_row = []

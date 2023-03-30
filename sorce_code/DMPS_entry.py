@@ -9,6 +9,7 @@ sys.dont_write_bytecode = True
 def create_entry(area):
     #出力先を指定
     settingsArea   = area[0]
+    detectionArea  = area[2]
     #背景色、フォントカラーの指定
     background = "black"
     fontcolor = "white"
@@ -31,15 +32,14 @@ def create_entry(area):
     entry_fdi_max      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
     entry_savefile     = tk.Entry(settingsArea, width=40, bg=background, fg=fontcolor, font=("", 10))
     entry_plt_title    = tk.Entry(settingsArea, width=25, bg=background, fg=fontcolor, font=("", 10))
-<<<<<<< HEAD
+
     entry_load_px      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     entry_load_py      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
-    
-=======
+
     entry_load_px      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     entry_load_py      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     #entry設置
->>>>>>> 31f046cb4c7057d00b1283210064bef6d4a36d72
+
     entry_file.place(        x=80,y=setpositionY  + 2)
     entry_acolite_file.place(x=80,y=setpositionY  + 22)
     entry_lumi.place(        x=150,y=setpositionY + 82)

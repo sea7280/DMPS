@@ -27,6 +27,7 @@ def create_button(master, area, entry, listbox, chk, textbox):
 ################################################# change frame #################################################
         Button = tk.Button(master,text=u'main' , width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(mainArea))
+        Button.place(x=5,y=3, height=20)
         #背景、フォントカラーの設定
         #背景は黒、文字を緑にした
         background     = "black"
@@ -35,17 +36,14 @@ def create_button(master, area, entry, listbox, chk, textbox):
 #画面の変更ボタン
         Button = tk.Button(master,text=u'Settings' , width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(settingsArea))
-        Button.place(x=5,y=3, height=20)
+        Button.place(x=73,y=3, height=20)
         Button = tk.Button(master,text=u'detection', width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(detectionArea))
-        Button.place(x=73,y=3, height=20)
+        Button.place(x=141,y=3, height=20)
 #終了
         Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
-        Button.place(x=141,y=3, height=20)
-
-#ソフトウェアの終了ボタン
-        Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
         Button.place(x=209,y=3, height=20)
+
 #ヒストグラムの生成ボタン
         Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="hist"))

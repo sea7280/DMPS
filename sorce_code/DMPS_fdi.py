@@ -36,6 +36,7 @@ def calc_fdi(filepath,setting_detail):
     if deltaX == 0:
         pass
     #切り抜き範囲に合わせて配列の抜き出し
+    #ここのコード醜いからいつか修正したい
     else:
         raw = np.arange(minX)
         row = np.arange(minY)
