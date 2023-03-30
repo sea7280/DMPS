@@ -40,12 +40,13 @@ def admin(entry, listbox, chk, textbox, mode):
     load_py        = int(entry[15].get())   #15
     check          = chk                    #16
     #textbox                                #17
+    teacher        = entry[16].get()        #18
 
 #変数：setting_detail
     setting_detail = [filePath, filePathAco, luminance, luminance_hist
                   , minX, minY, deltaX, deltaY,
                   ndvi_min, ndvi_max, fdi_min, fdi_max, 
-                  saveFileName, title, load_px,load_py, check, textbox]
+                  saveFileName, title, load_px,load_py, check, textbox, teacher]
 
 #衛星データのパスを配列に格納
     satellite_filepath = pathGet.pathGet(entry)

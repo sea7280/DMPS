@@ -19,7 +19,7 @@ class Application(tk.Frame):
         super().__init__(master)
 
         #メインウィンドウの生成
-        self.master.geometry("860x470")
+        self.master.geometry("860x510")
         self.master.title("DMPS")
         self.master.configure(bg="black")
         #フレームの生成。返り値をself.frameListで保持
@@ -37,6 +37,8 @@ class Application(tk.Frame):
         #ボタンの生成。フレーム、entry、リストボックス、チェックボタン、テキストボックスの変数を渡している
         button.create_button(master, self.frameList, self.entry_list, self.listbox, self.chk, self.textbox)
 
+        self.master.resizable(width=False, height=False)
+        
 #Applicationの実行関数
 def main():
     win = tk.Tk()

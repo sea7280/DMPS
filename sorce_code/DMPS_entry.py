@@ -36,8 +36,7 @@ def create_entry(area):
     entry_load_px      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     entry_load_py      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
 
-    entry_load_px      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
-    entry_load_py      = tk.Entry(settingsArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
+    entry_teacherdata  = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8))
     #entry設置
 
     entry_file.place(        x=80,y=setpositionY  + 2)
@@ -56,6 +55,7 @@ def create_entry(area):
     entry_plt_title.place(   x=120,y=setpositionY + 302)
     entry_load_px.place(     x=50,y=330)
     entry_load_py.place(     x=100,y=330)
+    entry_teacherdata.place( x=80 ,y=setpositionY + 362)
     
     #enrtyに初期値を設定
     entry_lumi.insert(0,10000)
@@ -88,6 +88,7 @@ def create_entry(area):
                 ,entry_savefile     #12
                 ,entry_plt_title    #13
                 ,entry_load_px      #14
-                ,entry_load_py]     #15
+                ,entry_load_py      #15
+                ,entry_teacherdata] #16
     #entry_listを返す
     return entry_list

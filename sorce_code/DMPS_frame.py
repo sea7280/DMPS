@@ -5,10 +5,10 @@ import tkinter as tk
 
 #フレームの生成関数
 def create_frame(master):
-    detectionFrame = tk.Frame(master   , height=440, width=850, bg="black", relief=tk.GROOVE, bd=3)
-    mainFrame      = tk.Frame(master   , height=440, width=860, bg="black")
-    runFrame       = tk.Frame(mainFrame, height=440, width=420, bg="black", relief=tk.GROOVE, bd=3)
-    setteingFrame  = tk.Frame(mainFrame, height=440, width=420, bg="black", relief=tk.GROOVE, bd=3)
+    detectionFrame = tk.Frame(master   , height=480, width=850, bg="black", relief=tk.GROOVE, bd=3)
+    mainFrame      = tk.Frame(master   , height=480, width=860, bg="black")
+    runFrame       = tk.Frame(mainFrame, height=480, width=420, bg="black", relief=tk.GROOVE, bd=3)
+    setteingFrame  = tk.Frame(mainFrame, height=480, width=420, bg="black", relief=tk.GROOVE, bd=3)
 
     detectionFrame.place(x=5, y=25)
     mainFrame.place(     x=0, y=25)

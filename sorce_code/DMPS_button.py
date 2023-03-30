@@ -12,7 +12,6 @@ import DMPS_loadDataFile as loadDataFile
 import DMPS_loadSetting as loadSetting
 import DMPS_listDelete as listDelete
 import DMPS_tkraise as tkraise
-
 #ボタン生成関数
 def create_button(master, area, entry, listbox, chk, textbox):
         #引数から各ウィジェットを保持
@@ -33,16 +32,15 @@ def create_button(master, area, entry, listbox, chk, textbox):
         background     = "black"
         fontcolor      = "green2"
 
-#画面の変更ボタン
-        Button = tk.Button(master,text=u'Settings' , width=8, bg=background, fg=fontcolor,
-                                command=lambda:tkraise.change_frame(settingsArea))
-        Button.place(x=73,y=3, height=20)
+        """
+#拡張用エリア
         Button = tk.Button(master,text=u'detection', width=8, bg=background, fg=fontcolor,
                                 command=lambda:tkraise.change_frame(detectionArea))
-        Button.place(x=141,y=3, height=20)
+        Button.place(x=73,y=3, height=20)
+        """
 #終了
         Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
-        Button.place(x=209,y=3, height=20)
+        Button.place(x=73,y=3, height=20)
 
 #ヒストグラムの生成ボタン
         Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
@@ -62,6 +60,10 @@ def create_button(master, area, entry, listbox, chk, textbox):
 #設定のボタン保存
         Button = tk.Button(settingsArea,text=u'Save Settings', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="saveSetting"))
         Button.place(x=310, y=390, height=30 , width=90)
+#教師データ選択
+        Button = tk.Button(settingsArea,text=u'select', bg=background, fg=fontcolor,
+                                command=lambda:loadDataFile.load_teacherdata(entry_list[16]))
+        Button.place(x=200,y=433, height=18)
 
         #ボタンの生成座標の設定
         setpositionX   = 35
@@ -98,6 +100,10 @@ def create_button(master, area, entry, listbox, chk, textbox):
         Button.place(x=setpositionX + deltapositionX*2, y=setpositionY + deltapositionY*2, height=30 , width=110)
 
 
+"""
+解析結果の拡大機能
+バグが多くて保留中
+
 ################################################# detection #################################################
 #出力結果リストの選択を削除
         Button = tk.Button(detectionArea,text=u'del', width=5,
@@ -112,3 +118,4 @@ def create_button(master, area, entry, listbox, chk, textbox):
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, mode="pointload"))
         Button.place(x=50,y=355)
 
+"""

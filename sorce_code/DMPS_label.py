@@ -48,6 +48,8 @@ def create_label(area):
     label = tk.Label(setteingFrame, text=u'plt title'       , bg=background, fg=fontcolor, font=("",10)).place(x=20, y=setpositionY + 370)
     label = tk.Label(setteingFrame, text=u'Check if you want to standardize. →'
                                                             , bg=background, fg=fontcolor, font=("",10)).place(x=0,  y=setpositionY + 390)
+    label = tk.Label(setteingFrame, text=u'Please select a teacher data. →'
+                                                            , bg=background, fg=fontcolor, font=("",10)).place(x=0,  y=setpositionY + 410)
 
 ################################################# button #################################################
     label = tk.Label(runFrame,      text=u'Run'             , bg=background, fg=fontcolor, font=("",11)).place(x=10, y=0)
@@ -56,4 +58,4 @@ def create_label(area):
 
 
 ################################################# point #################################################
-    label = tk.Label(detectionFrame, text=u'Plastic Point'  , bg=background, fg=fontcolor, font=("",10)).place(x=10, y=0)
+    #label = tk.Label(detectionFrame, text=u'Plastic Point'  , bg=background, fg=fontcolor, font=("",10)).place(x=10, y=0)
