@@ -53,8 +53,8 @@ def create_entry(area):
     entry_fdi_max.place(     x=190,y=setpositionY + 222)
     entry_savefile.place(    x=120,y=setpositionY + 262)
     entry_plt_title.place(   x=120,y=setpositionY + 302)
-    entry_load_px.place(     x=50,y=330)
-    entry_load_py.place(     x=100,y=330)
+    #entry_load_px.place(     x=50,y=330)
+    #entry_load_py.place(     x=100,y=330)
     entry_teacherdata.place( x=80 ,y=setpositionY + 362)
     
     #enrtyに初期値を設定
@@ -92,3 +92,16 @@ def create_entry(area):
                 ,entry_teacherdata] #16
     #entry_listを返す
     return entry_list
+
+def create_calcbox(area):
+    frame = area[2]
+    background = "black"
+    fontcolor = "white"
+    entry_calcboxA = tk.Entry(frame, width=42, bg=background, fg=fontcolor, font=("", 13 ))
+    entry_calcboxB = tk.Entry(frame, width=42, bg=background, fg=fontcolor, font=("", 13 ))
+
+    entry_calcboxA.place(x=10, y=240)
+    entry_calcboxB.place(x=10, y=330)
+    
+    calcbox = [entry_calcboxA, entry_calcboxB]
+    return calcbox
