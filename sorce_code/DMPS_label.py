@@ -13,11 +13,7 @@ def create_label(area):
 
 ################################################# main #################################################
     setpositionY = 20
-    label = tk.Label(setteingFrame, text=u'Settings'        , bg=background, fg=fontcolor, font=("",11)).place(x=10, y=0)
-    label = tk.Label(setteingFrame, text=u'Please select satellite data file & acolite data file.'   
-                                                            , bg=background, fg=fontcolor, font=("",10)).place(x=0, y=setpositionY)
-    label = tk.Label(setteingFrame, text=u'Be sure to include "S2A" or "S2B" in the file name \n according to the satellite aircraft number.'
-                                                            , bg=background, fg=fontcolor, font=("",10)).place(x=0, y=setpositionY + 20)
+    label = tk.Label(setteingFrame, text=u'Settings'        , bg=background, fg=fontcolor, font=("",14)).place(x=10, y=0)
     label = tk.Label(setteingFrame, text=u'You can also load settings from the button on the right. →'   ,
                     bg=background, fg=fontcolor, font=("",10)).place(x=0, y=setpositionY + 50)
     label = tk.Label(setteingFrame, text=u'Data:'           , bg=background, fg=fontcolor, font=("",10)).place(x=20, y=setpositionY + 70)
@@ -68,6 +64,8 @@ def create_label(area):
     label = tk.Label(customFrame, text=u'h : acolite nirband'  , bg=background, fg=fontcolor, font=("",14)).place(x=200,  y=setpositionY+90)
     label = tk.Label(customFrame, text=u'i : acolite RE2band'  , bg=background, fg=fontcolor, font=("",14)).place(x=200,  y=setpositionY+120)
     label = tk.Label(customFrame, text=u'j : acolite SWIRband' , bg=background, fg=fontcolor, font=("",14)).place(x=200,  y=setpositionY+150)
+    label = tk.Label(customFrame, text=u'ndvi : ndvi'          , bg=background, fg=fontcolor, font=("",14)).place(x=20,  y=setpositionY+120)
+    label = tk.Label(customFrame, text=u'fdi  : fdi'            , bg=background, fg=fontcolor, font=("",14)).place(x=20,  y=setpositionY+150)
 
     label = tk.Label(customFrame, text=u'A', bg=background, fg=fontcolor, font=("",12)).place(x=10,  y=220)
     label = tk.Label(customFrame, text=u'B', bg=background, fg=fontcolor, font=("",12)).place(x=10,  y=310)

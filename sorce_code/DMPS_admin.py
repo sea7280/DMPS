@@ -42,16 +42,22 @@ def admin(entry, listbox, chk, textbox, calc, mode):
     check          = chk                    #16
     #textbox                                #17
     teacher        = entry[16].get()        #18
-    calc_equationA = calc[0].get()          #19
-    calc_equationB = calc[1].get()          #20
+    #calc                                   #19
 
+    '''
+    if calc == None:
+        calc_equationA = None
+        calc_equationB = None
+    else:
+        calc_equationA = calc[0].get()      #19
+        calc_equationB = calc[1].get()      #20
+    '''
 #変数：setting_detail
     setting_detail = [filePath, filePathAco, luminance, luminance_hist
                   , minX, minY, deltaX, deltaY,
                   ndvi_min, ndvi_max, fdi_min, fdi_max, 
                   saveFileName, title, load_px,load_py, 
-                  check, textbox, teacher, 
-                  calc_equationA, calc_equationB]
+                  check, textbox, teacher, calc]
 
 #衛星データのパスを配列に格納
     satellite_filepath = pathGet.pathGet(entry)
@@ -105,5 +111,4 @@ def admin(entry, listbox, chk, textbox, calc, mode):
         elif mode == "pointload":
             reloadJudge.reloadJudgeRGB(satellite_filepath, setting_detail, listbox, mode="point")
         elif mode == "custom":
-            custom.test()
-            custom.custom_knn(setting_detail)
+            custom.custom_knn(satellite_filepath, setting_detail)

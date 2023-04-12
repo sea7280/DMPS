@@ -102,6 +102,12 @@ def create_calcbox(area):
 
     entry_calcboxA.place(x=10, y=240)
     entry_calcboxB.place(x=10, y=330)
-    
-    calcbox = [entry_calcboxA, entry_calcboxB]
+
+    entry_A_name = tk.Entry(frame, width=10, bg=background, fg=fontcolor, font=("", 13 ))
+    entry_B_name = tk.Entry(frame, width=10, bg=background, fg=fontcolor, font=("", 13 ))
+
+    entry_A_name.place(x=200, y=250)
+    entry_B_name.place(x=200, y=340)
+
+    calcbox = [entry_calcboxA, entry_calcboxB, entry_A_name, entry_B_name]
     return calcbox

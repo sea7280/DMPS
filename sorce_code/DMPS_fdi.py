@@ -33,34 +33,13 @@ def calc_fdi(filepath,setting_detail):
     R_RE2_Band_array    = cut_RE2_img.ReadAsArray()
     R_SWIR1_Band_array  = cut_SWIR1_img.ReadAsArray()
     #範囲指定がなければ切り抜きは行わない
-    if deltaX == 0:
+    if deltaX == 0 and deltaY == 0:
         pass
     #切り抜き範囲に合わせて配列の抜き出し
-    #ここのコード醜いからいつか修正したい
     else:
-        raw = np.arange(minX)
-        row = np.arange(minY)
-
-        NIR_Band_array = np.delete(NIR_Band_array,row,axis=0)
-        NIR_Band_array = np.delete(NIR_Band_array,raw,axis=1)
-
-        R_RE2_Band_array = np.delete(R_RE2_Band_array,row,axis=0)
-        R_RE2_Band_array = np.delete(R_RE2_Band_array,raw,axis=1)
-
-        R_SWIR1_Band_array = np.delete(R_SWIR1_Band_array,row,axis=0)
-        R_SWIR1_Band_array = np.delete(R_SWIR1_Band_array,raw,axis=1)
-
-        raw_delta = np.arange(deltaX,len(NIR_Band_array[0]),1)
-        row_delta = np.arange(deltaY,len(NIR_Band_array),1)
-
-        NIR_Band_array = np.delete(NIR_Band_array,row_delta,axis=0)
-        NIR_Band_array = np.delete(NIR_Band_array,raw_delta,axis=1)
-
-        R_RE2_Band_array = np.delete(R_RE2_Band_array,row_delta,axis=0)
-        R_RE2_Band_array = np.delete(R_RE2_Band_array,raw_delta,axis=1)
-
-        R_SWIR1_Band_array  = np.delete(R_SWIR1_Band_array ,row_delta,axis=0)
-        R_SWIR1_Band_array  = np.delete(R_SWIR1_Band_array ,raw_delta,axis=1)
+        NIR_Band_array   = NIR_Band_array[minY:minY+deltaY, minX:minX+deltaX]
+        R_RE2_Band_array = R_RE2_Band_array[minY:minY+deltaY, minX:minX+deltaX]
+        R_SWIR1_Band_array = R_SWIR1_Band_array[minY:minY+deltaY, minX:minX+deltaX]
 
     #sentinelの号機に合わせて中心周波数値を切り替え
     if senti_num == 1:  #S2A
