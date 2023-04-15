@@ -54,7 +54,10 @@ def create_label(area):
     label = tk.Label(customFrame, text=u'ndvi : ndvi'          , bg=background, fg=fontcolor, font=("",14)).place(x=20,  y=setpositionY+120)
     label = tk.Label(customFrame, text=u'fdi  : fdi'            , bg=background, fg=fontcolor, font=("",14)).place(x=20,  y=setpositionY+150)
 
-    label = tk.Label(customFrame, text=u'A', bg=background, fg=fontcolor, font=("",12)).place(x=10,  y=220)
-    label = tk.Label(customFrame, text=u'B', bg=background, fg=fontcolor, font=("",12)).place(x=10,  y=310)
+    label = tk.Label(customFrame, text=u'A', bg=background, fg=fontcolor, font=("",14)).place(x=10,  y=215)
+    label = tk.Label(customFrame, text=u'B', bg=background, fg=fontcolor, font=("",14)).place(x=10,  y=305)
+    label = tk.Label(customFrame, text=u'Name A', bg=background, fg=fontcolor, font=("",13)).place(x=210,  y=278)
+    label = tk.Label(customFrame, text=u'Name B', bg=background, fg=fontcolor, font=("",13)).place(x=210,  y=368)
+
 ################################################# point #################################################
     #label = tk.Label(detectionFrame, text=u'Plastic Point'  , bg=background, fg=fontcolor, font=("",10)).place(x=10, y=0)

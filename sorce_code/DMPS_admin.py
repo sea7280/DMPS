@@ -112,3 +112,7 @@ def admin(entry, listbox, chk, textbox, calc, mode):
             reloadJudge.reloadJudgeRGB(satellite_filepath, setting_detail, listbox, mode="point")
         elif mode == "custom":
             custom.custom_knn(satellite_filepath, setting_detail)
+            knnSave.knnSaveExcel(saveFileName)
+            textbox.insert(tk.END,"Complete save excel file.\n")
+            textbox.see("end")
+            knnRGB.knnRGB(satellite_filepath, setting_detail, listbox, load=None)

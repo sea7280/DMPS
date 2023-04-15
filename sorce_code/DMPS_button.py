@@ -66,7 +66,7 @@ def create_button(master, area, entry, listbox, chk, textbox, calcbox):
 #教師データ選択
         Button = tk.Button(settingsArea,text=u'...', bg=background, fg=fontcolor,
                                 command=lambda:loadDataFile.load_teacherdata(entry_list[16]))
-        Button.place(x=390,y=393, height=20 , width=20)
+        Button.place(x=390,y=395, height=20 , width=20)
 
         #ボタンの生成座標の設定
         setpositionX   = 35
