@@ -15,47 +15,48 @@ def create_entry(area):
     fontcolor = "white"
     
     #出力座標の基準位置
-    setpositionY = 90
+    setpositionY = 60
 
     #entryの生成
     entry_file         = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8 ))
     entry_acolite_file = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8 ))
-    entry_lumi         = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_lumi_hist    = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_px           = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_py           = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_deltaX       = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_deltaY       = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_ndvi_min     = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_ndvi_max     = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_fdi_min      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_fdi_max      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 10),justify=tk.RIGHT)
-    entry_savefile     = tk.Entry(settingsArea, width=40, bg=background, fg=fontcolor, font=("", 10))
-    entry_plt_title    = tk.Entry(settingsArea, width=25, bg=background, fg=fontcolor, font=("", 10))
+    entry_lumi         = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_lumi_hist    = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_px           = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_py           = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_deltaX       = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_deltaY       = tk.Entry(settingsArea, width=7 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_ndvi_min     = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_ndvi_max     = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_fdi_min      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_fdi_max      = tk.Entry(settingsArea, width=4 , bg=background, fg=fontcolor, font=("", 14),justify=tk.RIGHT)
+    entry_savefile     = tk.Entry(settingsArea, width=30, bg=background, fg=fontcolor, font=("", 13))
+    entry_plt_title    = tk.Entry(settingsArea, width=25, bg=background, fg=fontcolor, font=("", 14))
 
     entry_load_px      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
     entry_load_py      = tk.Entry(detectionArea, width=6 , bg=background, fg=fontcolor, font=("", 10))
 
-    entry_teacherdata  = tk.Entry(settingsArea, width=50, bg=background, fg=fontcolor, font=("", 8))
+    entry_teacherdata  = tk.Entry(settingsArea, width=45, bg=background, fg=fontcolor, font=("", 8))
     #entry設置
 
-    entry_file.place(        x=80,y=setpositionY  + 2)
-    entry_acolite_file.place(x=80,y=setpositionY  + 22)
-    entry_lumi.place(        x=150,y=setpositionY + 82)
-    entry_lumi_hist.place(   x=150,y=setpositionY + 102)
-    entry_px.place(          x=120,y=setpositionY + 142)
-    entry_py.place(          x=190,y=setpositionY + 142)
-    entry_deltaX.place(      x=120,y=setpositionY + 162)
-    entry_deltaY.place(      x=190,y=setpositionY + 162)
-    entry_ndvi_min.place(    x=140,y=setpositionY + 202)
-    entry_ndvi_max.place(    x=190,y=setpositionY + 202)
-    entry_fdi_min.place(     x=140,y=setpositionY + 222)
-    entry_fdi_max.place(     x=190,y=setpositionY + 222)
-    entry_savefile.place(    x=120,y=setpositionY + 262)
-    entry_plt_title.place(   x=120,y=setpositionY + 302)
+    entry_file.place(        x=80,y=setpositionY  + 5)
+    entry_acolite_file.place(x=80,y=setpositionY  + 35)
+    entry_lumi.place(        x=200,y=setpositionY + 62)
+    entry_lumi_hist.place(   x=200,y=setpositionY + 92)
+    entry_px.place(          x=180,y=setpositionY + 122)
+    entry_py.place(          x=280,y=setpositionY + 122)
+    entry_deltaX.place(      x=180,y=setpositionY + 152)
+    entry_deltaY.place(      x=280,y=setpositionY + 152)
+    entry_ndvi_min.place(    x=210,y=setpositionY + 182)
+    entry_ndvi_max.place(    x=280,y=setpositionY + 182)
+    entry_fdi_min.place(     x=210,y=setpositionY + 212)
+    entry_fdi_max.place(     x=280,y=setpositionY + 212)
+    
+    entry_savefile.place(    x=130,y=setpositionY + 242)
+    entry_plt_title.place(   x=130,y=setpositionY + 272)
     #entry_load_px.place(     x=50,y=330)
     #entry_load_py.place(     x=100,y=330)
-    entry_teacherdata.place( x=80 ,y=setpositionY + 362)
+    entry_teacherdata.place( x=110 ,y=setpositionY + 337)
     
     #enrtyに初期値を設定
     entry_lumi.insert(0,10000)
@@ -106,8 +107,8 @@ def create_calcbox(area):
     entry_A_name = tk.Entry(frame, width=10, bg=background, fg=fontcolor, font=("", 13 ))
     entry_B_name = tk.Entry(frame, width=10, bg=background, fg=fontcolor, font=("", 13 ))
 
-    entry_A_name.place(x=200, y=250)
-    entry_B_name.place(x=200, y=340)
+    entry_A_name.place(x=200, y=280)
+    entry_B_name.place(x=200, y=370)
 
     calcbox = [entry_calcboxA, entry_calcboxB, entry_A_name, entry_B_name]
     return calcbox

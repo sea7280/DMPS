@@ -42,28 +42,31 @@ def create_button(master, area, entry, listbox, chk, textbox, calcbox):
         Button = tk.Button(master,text=u'Exit', width=8, bg=background, fg=fontcolor,command=lambda:exit.exit_window(master))
         Button.place(x=141,y=3, height=20)
 
+
+################################################# function #################################################
+
 #ヒストグラムの生成ボタン
-        Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor,
+        Button = tk.Button(settingsArea,text=u'hist', width=5, bg=background, fg=fontcolor, font=("",12),
                                 command=lambda:admin.admin(entry_list, listbox, chk, textbox, calc=None, mode="hist"))
-        Button.place(x=205,y=192, height=18)
+        Button.place(x=300,y=148, height=30, width=90)
 #衛星データファイルの読み込みボタン
-        Button = tk.Button(settingsArea,text=u'...', bg=background, fg=fontcolor,
+        Button = tk.Button(settingsArea,text=u'...', bg=background, fg=fontcolor, 
                                 command=lambda:loadDataFile.load_dataFile(entry_list[0]))
-        Button.place(x=390, y=93, height=15 , width=15)
+        Button.place(x=390, y=63, height=20 , width=20)
         Button = tk.Button(settingsArea,text=u'...', bg=background, fg=fontcolor,
                                 command=lambda:loadDataFile.load_dataFile(entry_list[1]))
-        Button.place(x=390, y=113, height=15 , width=15)
+        Button.place(x=390, y=93, height=20 , width=20)
 #設定ファイルの読み込みボタン
-        Button = tk.Button(settingsArea,text=u'Load', width=5, bg=background, fg=fontcolor,
+        Button = tk.Button(settingsArea,text=u'Load', width=5, bg=background, fg=fontcolor, font=("",12),
                                 command=lambda:loadSetting.read_setting_file(entry_list))
-        Button.place(x=340,y=73, height=18)
+        Button.place(x=300,y=30, height=30, width=90)
 #設定のボタン保存
         Button = tk.Button(settingsArea,text=u'Save Settings', bg=background, fg=fontcolor,command=lambda:admin.admin(entry_list, listbox, chk, textbox, calc=None, mode="saveSetting"))
-        Button.place(x=310, y=390, height=30 , width=90)
+        Button.place(x=300, y=430, height=30 , width=100)
 #教師データ選択
-        Button = tk.Button(settingsArea,text=u'select', bg=background, fg=fontcolor,
+        Button = tk.Button(settingsArea,text=u'...', bg=background, fg=fontcolor,
                                 command=lambda:loadDataFile.load_teacherdata(entry_list[16]))
-        Button.place(x=200,y=433, height=18)
+        Button.place(x=390,y=393, height=20 , width=20)
 
         #ボタンの生成座標の設定
         setpositionX   = 35

@@ -16,6 +16,6 @@ def create_checkbutton(area):
 
     # チェックボタン作成
     chk = tk.Checkbutton(settingsArea, variable=bln, bg=background, fg=fontcolor)
-    chk.place(x=210, y=409)
+    chk.place(x=290, y=360)
     #ウィジェットを返り値として渡す
     return bln
