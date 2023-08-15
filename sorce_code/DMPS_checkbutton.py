@@ -4,7 +4,7 @@
 import tkinter as tk
 
 #チェックの端生成関数
-def create_checkbutton(area):
+def create_checkbutton(area, px, py):
     #色の指定
     background = "black"
     fontcolor = "green2"
@@ -16,6 +16,6 @@ def create_checkbutton(area):
 
     # チェックボタン作成
     chk = tk.Checkbutton(settingsArea, variable=bln, bg=background, fg=fontcolor)
-    chk.place(x=290, y=360)
+    chk.place(x=px, y=py)
     #ウィジェットを返り値として渡す
     return bln

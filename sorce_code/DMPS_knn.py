@@ -46,9 +46,9 @@ def knn_judge(ndvi, fdi, setting_detail):
         log.see("end")
         
         result_data = []
-        if setting_detail[13] == False:
+        if setting_detail[16] == False:
             pass
-        elif setting_detail[13] == True:
+        elif setting_detail[16] == True:
             #標準化
             sc = StandardScaler()
             sc.fit(df_X)

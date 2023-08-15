@@ -32,7 +32,9 @@ class Application(tk.Frame):
         #リストボックスの生成。返り値をself.listboxで保持
         self.listbox = listbox.create_listbox(self.frameList)
         #チェックボタンの生成。返り値をself.chkで保持
-        self.chk = chk.create_checkbutton(self.frameList)
+        standardization_chk = chk.create_checkbutton(self.frameList, px=290, py=360)
+        overlap_chk = chk.create_checkbutton(self.frameList, px=80, py=420)
+        self.chk = [standardization_chk, overlap_chk]
         #テキストボックスを生成。返り値をself.textboxで保持
         self.textbox = textbox.create_textbox(self.frameList)
         #ボタンの生成。フレーム、entry、リストボックス、チェックボタン、テキストボックスの変数を渡している

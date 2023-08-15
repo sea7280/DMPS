@@ -39,10 +39,11 @@ def admin(entry, listbox, chk, textbox, calc, mode):
     title          = entry[13].get()        #13
     load_px        = int(entry[14].get())   #14
     load_py        = int(entry[15].get())   #15
-    check          = chk                    #16
+    check          = chk[0].get()           #16     標準化
     #textbox                                #17
     teacher        = entry[16].get()        #18
     #calc                                   #19
+    overlap        = chk[1].get()           #20
 
     '''
     if calc == None:
@@ -53,11 +54,28 @@ def admin(entry, listbox, chk, textbox, calc, mode):
         calc_equationB = calc[1].get()      #20
     '''
 #変数：setting_detail
-    setting_detail = [filePath, filePathAco, luminance, luminance_hist
-                  , minX, minY, deltaX, deltaY,
-                  ndvi_min, ndvi_max, fdi_min, fdi_max, 
-                  saveFileName, title, load_px,load_py, 
-                  check, textbox, teacher, calc]
+    setting_detail = [filePath,         #0
+                      filePathAco,      #1
+                      luminance,        #2
+                      luminance_hist,   #3
+                      minX,             #4
+                      minY,             #5
+                      deltaX,           #6
+                      deltaY,           #7
+                      ndvi_min,         #8
+                      ndvi_max,         #9
+                      fdi_min,          #10
+                      fdi_max,          #11
+                      saveFileName,     #12
+                      title,            #13
+                      load_px,          #14
+                      load_py,          #15
+                      check,            #16
+                      textbox,          #17
+                      teacher,          #18
+                      calc,             #19
+                      overlap           #20
+                      ] 
 
 #衛星データのパスを配列に格納
     satellite_filepath = pathGet.pathGet(entry)
