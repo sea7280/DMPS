@@ -6,9 +6,9 @@ def create_textbox(area):
     frame = area[1]
     background = "black"
     fontcolor = "green2"
-    textbox = ScrolledText(frame, font=("",12), height=22, width=53,
+    textbox = ScrolledText(frame, font=("",12), height=18, width=48,
                             bg=background, fg=fontcolor)
-    textbox.place(x=10, y=180)
+    textbox.place(x=5, y=180)
     return textbox
 
 """

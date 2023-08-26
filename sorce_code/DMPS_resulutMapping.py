@@ -68,14 +68,19 @@ def resultMapping(filepath,setting_detail, load, figure):
     #カウント付きは300ピクセル四方でカウント　なしは100ピクセル四方でカウント
     #ヒートマップの最大値はカウント付きは90000　なしは10000
 
+#delta-> プラスチックをカウントする範囲（delta×delta）
+#max-> ヒートマップの最大値
+#例）delta=50 -> 50×50=2500PIXCEL内でカウント -> maxの上限値は2500
 
 #最大値の設定
+#数字ありヒートマップ
     if figure == True:
-        delta = 100
-        max = 90000
+        delta = 25
+        max = 20000
+#数字なしヒートマップ
     elif figure == False:
-        delta = 50
-        max = 0.2
+        delta = 25
+        max = 0.05
 #プラスチックカウント
     plasticCount = []
     plasticPercent = []
@@ -107,7 +112,7 @@ def resultMapping(filepath,setting_detail, load, figure):
 #    im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='bwr', 
 #                    aspect='equal', interpolation='nearest')
     #im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='gist_ncar', 
-    im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='bwr',
+    im = plt.imshow(plasticPercent, vmin=0, vmax=max,cmap='rainbow',
                     aspect='equal', interpolation='nearest')
     fig.colorbar(im, ax=ax)
     
@@ -119,13 +124,16 @@ def resultMapping(filepath,setting_detail, load, figure):
                        ha="center", va="center", color="w")
     elif figure == False:
         pass
-        
-#画像描画
-    image = Image.open(out_True_path)
-    xlim = ax.get_xlim()
-    ylim = ax.get_ylim()
-    ax.imshow(image, extent=[*xlim, *ylim], aspect='equal', alpha=0.7)
-
+    
+    #オーバーラップ処理
+    if setting_detail[20] == True:
+    #画像描画
+        image = Image.open(out_True_path)
+        xlim = ax.get_xlim()
+        ylim = ax.get_ylim()
+        ax.imshow(image, extent=[*xlim, *ylim], aspect='equal', alpha=0.7)
+    elif setting_detail[20] == False:
+        pass
 
     plt.title(setting_detail[12])
     plt.show()

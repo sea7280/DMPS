@@ -14,8 +14,8 @@ def create_label(area):
 ################################################# main #################################################
     setpositionY = 30
     label = tk.Label(setteingFrame, text=u'Settings'        , bg=background, fg=fontcolor, font=("",14)).place(x=10, y=0)
-    label = tk.Label(setteingFrame, text=u'Load Settings→'   ,
-                    bg=background, fg=fontcolor, font=("",13)).place(x=5, y=setpositionY)
+    label = tk.Label(setteingFrame, text=u'Load Settings→'
+                                                            , bg=background, fg=fontcolor, font=("",13)).place(x=5, y=setpositionY)
     label = tk.Label(setteingFrame, text=u'Data:'           , bg=background, fg=fontcolor, font=("",13)).place(x=5, y=setpositionY + 30)
     label = tk.Label(setteingFrame, text=u'ACOLITE:'        , bg=background, fg=fontcolor, font=("",13)).place(x=5, y=setpositionY + 60)
     label = tk.Label(setteingFrame, text=u'Luminance'       , bg=background, fg=fontcolor, font=("",13)).place(x=50, y=setpositionY + 90)
@@ -33,6 +33,7 @@ def create_label(area):
     label = tk.Label(setteingFrame, text=u'Check if you want to standardize. →'
                                                             , bg=background, fg=fontcolor, font=("",13)).place(x=5,  y=setpositionY + 330)
     label = tk.Label(setteingFrame, text=u'Teacher data'    , bg=background, fg=fontcolor, font=("",13)).place(x=5,  y=setpositionY + 360)
+    label = tk.Label(setteingFrame, text=u'Overlap ?'       , bg=background, fg=fontcolor, font=("",13)).place(x=5,  y=setpositionY + 390)
 
 ################################################# button #################################################
     label = tk.Label(runFrame,      text=u'Run'             , bg=background, fg=fontcolor, font=("",11)).place(x=10, y=0)
