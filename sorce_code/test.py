@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import numpy as np
+from osgeo import gdal, gdalconst
 
-judegedata = np.arange(100).reshape((10, 10))
+ds = gdal.Open('./image.tif', gdalconst.GA_ReadOnly)
 
-
-data = judegedata[0:5,8:12]
-
-print(judegedata)
-print(data)
+print(ds.RasterXSize)
+print(ds.RasterYSize)
+print(ds.RasterCount)
