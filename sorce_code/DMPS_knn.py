@@ -85,7 +85,7 @@ def knn_judge(ndvi, fdi, setting_detail):
         with open(os.path.dirname(__file__) + "/pickle/judge.pickle", mode='wb') as f:
             pickle.dump(result_data, f)
     #log用
-        string = setting_detail[12]
+        str(string = setting_detail[12])
         with open(os.getcwd() + f"/pickle_log/{string}_" + start_time.strftime('%Y年%m月%d日%H時%M分%S秒') + ".pickle", mode='wb') as f:
             pickle.dump(result_data, f)
 
