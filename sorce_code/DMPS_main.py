@@ -22,7 +22,7 @@ class Application(tk.Frame):
         self.master.geometry("860x510")
         self.master.title("DMPS")
         self.master.configure(bg="black")
-        #フレームの生成。返り値をself.frameListで保持
+        #フレームの生成。返り値をself.frameListで保持 p
         self.frameList = frame.create_frame(master)
         #ラベル生成
         label.create_label(self.frameList)
